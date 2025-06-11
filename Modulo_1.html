@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Configuración y Primeros Pasos | Fundamentos de Programación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/mod1.css">
+</head>
+<body>
+    <!-- Encabezado del módulo -->
+    <div class="module-header text-center">
+        <div class="container">
+            <div class="module-header-content">
+                <h1 class="display-4 fw-bold">Módulo 1: Configuración y Primeros Pasos</h1>
+                <p class="lead">Prepara tu entorno de desarrollo y escribe tu primer programa en Python</p>
+                <span class="badge badge-module">Sesion 1</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de progreso del módulo -->
+    <div class="container">
+        <div class="module-progress">
+            <div style="flex: 1;">
+                <h5 class="mb-2">Progreso del módulo</h5>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                </div>
+            </div>
+            <div>
+                <a href="Bienvenida.html">
+                <button class="btn btn-python">
+                    <i class="fas fa-solid fa-gift"></i> ¡Saludo de Bienvenida!
+                </button></a>
+            </div>
+        </div>
+
+        <!-- Navegación del módulo -->
+        <div class="module-nav">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-intro-tab" data-bs-toggle="pill" href="#v-pills-intro" role="tab" aria-controls="v-pills-intro" aria-selected="true">
+                            <i class="fas fa-home me-2"></i>Introducción
+                        </a>
+                        <a class="nav-link" id="v-pills-install-tab" data-bs-toggle="pill" href="#v-pills-install" role="tab" aria-controls="v-pills-install" aria-selected="false">
+                            <i class="fas fa-download me-2"></i>Instalación
+                        </a>
+                        <a class="nav-link" id="v-pills-syntax-tab" data-bs-toggle="pill" href="#v-pills-syntax" role="tab" aria-controls="v-pills-syntax" aria-selected="false">
+                            <i class="fas fa-code me-2"></i>Sintaxis básica
+                        </a>
+                        <a class="nav-link" id="v-pills-examples-tab" data-bs-toggle="pill" href="#v-pills-examples" role="tab" aria-controls="v-pills-examples" aria-selected="false">
+                            <i class="fas fa-chart-line me-2"></i>Ejemplos prácticos
+                        </a>
+                        <a class="nav-link" id="v-pills-exercises-tab" data-bs-toggle="pill" href="#v-pills-exercises" role="tab" aria-controls="v-pills-exercises" aria-selected="false">
+                            <i class="fas fa-dumbbell me-2"></i>Ejercicios
+                        </a>
+                        <a class="nav-link" id="v-pills-quiz-tab" data-bs-toggle="pill" href="#v-pills-quiz" role="tab" aria-controls="v-pills-quiz" aria-selected="false">
+                            <i class="fas fa-question-circle me-2"></i>Quiz de comprensión
+                        </a>
+                        <a class="nav-link" id="v-pills-integration-tab" data-bs-toggle="pill" href="#v-pills-integration" role="tab" aria-controls="v-pills-integration" aria-selected="false">
+                            <i class="fas fa-project-diagram me-2"></i>Ejercicio integrador
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <!-- Introducción -->
+                        <div class="tab-pane fade show active" id="v-pills-intro" role="tabpanel" aria-labelledby="v-pills-intro-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <h3 class="mb-0">Introducción al módulo</h3>
+                                </div>
+                                <p>Bienvenido al emocionante mundo de la programación con Python. En este primer módulo, te guiaré paso a paso en la configuración de tu entorno de desarrollo y en la escritura de tus primeros programas.</p>
+                                
+                                <p>Python es el lenguaje ideal para comenzar en programación y análisis de datos debido a:</p>
+                                <ul>
+                                    <li><strong>Sintaxis clara y legible:</strong> Fácil de aprender para principiantes</li>
+                                    <li><strong>Comunidad activa:</strong> Gran cantidad de recursos y soporte</li>
+                                    <li><strong>Ecosistema robusto:</strong> Bibliotecas especializadas para análisis de datos</li>
+                                    <li><strong>Versatilidad:</strong> Desde scripts simples hasta aplicaciones complejas</li>
+                                </ul>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Consejo para instructores:</strong> Enfócate en la lógica de programación más que en la sintaxis. Los conceptos fundamentales son transferibles a cualquier lenguaje.
+                                </div>
+                                
+                                <h4 class="mt-4">Lo que aprenderás en este módulo:</h4>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Instalación</h5>
+                                                </div>
+                                                <p class="mb-0">Configurar Python y Jupyter Notebook en tu computadora</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Primeros pasos</h5>
+                                                </div>
+                                                <p class="mb-0">Ejecutar tu primer programa y entender la sintaxis básica</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Ejemplos prácticos</h5>
+                                                </div>
+                                                <p class="mb-0">Aplicación simple de Python al análisis de datos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Ejercicios</h5>
+                                                </div>
+                                                <p class="mb-0">Practicar los conceptos aprendidos con ejercicios guiados</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Instalación -->
+                        <div class="tab-pane fade" id="v-pills-install" role="tabpanel" aria-labelledby="v-pills-install-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                    <h3 class="mb-0">Instalación de Python y Jupyter Notebook</h3>
+                                </div>
+                                
+                                <p>Para comenzar con Python, necesitamos instalar dos componentes esenciales:</p>
+                                
+                                <div class="step">
+                                    <div class="step-circle">1</div>
+                                    <div class="step-content">
+                                        <h5>Instalar Python</h5>
+                                        <p>Descarga la última versión de Python desde el sitio oficial:</p>
+                                        <a href="https://www.python.org/downloads/" target="_blank" class="btn btn-python mb-3">
+                                            <i class="fab fa-python me-2"></i>Descargar Python
+                                        </a>
+                                        <p>Durante la instalación, asegúrate de marcar la opción "Add Python to PATH":</p>
+                                        <div class="screenshot">
+                                            <div class="bg-light border text-center p-4">
+                                                <i class="fas fa-image fa-4x text-muted mb-2"></i>
+                                                <p class="mb-0">Captura de pantalla: Opción "Add Python to PATH"</p>
+                                            </div>
+                                            <div class="screenshot-caption">Esta opción permite ejecutar Python desde cualquier ubicación en tu sistema</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <div class="step-circle">2</div>
+                                    <div class="step-content">
+                                        <h5>Instalar Jupyter Notebook</h5>
+                                        <p>Jupyter Notebook es un entorno interactivo ideal para análisis de datos. Instálalo ejecutando en tu terminal:</p>
+                                        <div class="code-block">
+                                            pip install notebook
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <div class="step-circle">3</div>
+                                    <div class="step-content">
+                                        <h5>Verificar la instalación</h5>
+                                        <p>Abre una terminal y ejecuta:</p>
+                                        <div class="code-block">
+                                            python --version
+                                        </div>
+                                        <p>Deberías ver la versión de Python instalada. Luego inicia Jupyter Notebook con:</p>
+                                        <div class="code-block">
+                                            jupyter notebook
+                                        </div>
+                                        <p>Esto abrirá una ventana en tu navegador con el entorno de Jupyter.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Alternativa para instructores:</strong> Considera usar Google Colab si no quieres instalar nada en tu computadora. Es un entorno Jupyter gratuito en la nube.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sintaxis básica -->
+                        <div class="tab-pane fade" id="v-pills-syntax" role="tabpanel" aria-labelledby="v-pills-syntax-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <h3 class="mb-0">Sintaxis básica de Python</h3>
+                                </div>
+                                
+                                <h4>Tu primer programa: ¡Hola Mundo!</h4>
+                                <p>La tradición en programación es comenzar con un programa que muestra "¡Hola Mundo!". En Python es muy simple:</p>
+                                
+                                <div class="code-block">
+                                    <span class="code-comment"># Esto es un comentario</span><br>
+                                    <span class="code-comment"># Nuestro primer programa en Python</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"¡Hola Mundo!"</span>)
+                                </div>
+                                
+                                <p>Para ejecutarlo:</p>
+                                <ol>
+                                    <li>Abre Jupyter Notebook y crea un nuevo cuaderno</li>
+                                    <li>Escribe el código en una celda</li>
+                                    <li>Presiona Shift+Enter para ejecutar</li>
+                                </ol>
+                                
+                                <h4 class="mt-4">Conceptos básicos</h4>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-primary text-white">
+                                                Comentarios
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Los comentarios explican tu código y no se ejecutan:</p>
+                                                <div class="code-block">
+                                                    <span class="code-comment"># Esto es un comentario de una línea</span><br><br>
+                                                    <span class="code-comment">"""<br>
+                                                    Esto es un comentario<br>
+                                                    de múltiples líneas<br>
+                                                    """</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card mb-4">
+                                            <div class="card-header bg-primary text-white">
+                                                Print()
+                                            </div>
+                                            <div class="card-body">
+                                                <p>La función print() muestra información en la consola:</p>
+                                                <div class="code-block">
+                                                    <span class="code-function">print</span>(<span class="code-string">"Bienvenido al curso"</span>)<br>
+                                                    <span class="code-function">print</span>(<span class="code-string">"Python es"</span>, <span class="code-string">"genial"</span>)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        <h4>Ejercicio: Saludo personalizado</h4>
+                                    </div>
+                                    <p>Crea un programa que pida al usuario su nombre y muestre un saludo personalizado.</p>
+                                    <p><strong>Ejemplo de salida:</strong></p>
+                                    <div class="code-block">
+                                        ¿Cómo te llamas? <span class="code-comment"># El programa pregunta</span><br>
+                                        María <span class="code-comment"># El usuario escribe su nombre</span><br>
+                                        ¡Hola María! Bienvenida al mundo de Python.
+                                    </div>
+                                    <button class="btn btn-python mt-2">
+                                        <i class="fas fa-lightbulb me-1"></i> Mostrar solución
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejemplos prácticos -->
+                        <div class="tab-pane fade" id="v-pills-examples" role="tabpanel" aria-labelledby="v-pills-examples-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejemplos prácticos con análisis de datos</h3>
+                                </div>
+                                
+                                <p>Aunque apenas estamos comenzando, vamos a ver un ejemplo simple de cómo Python puede usarse para análisis de datos.</p>
+                                
+                                <h4>Análisis de ventas mensuales</h4>
+                                <p>Imagina que tienes datos de ventas mensuales y quieres calcular el total y el promedio:</p>
+                                
+                                <div class="code-block">
+                                    <span class="code-comment"># Datos de ventas mensuales (en miles de dólares)</span><br>
+                                    ventas = [12.5, 15.3, 10.7, 18.2, 14.8, 20.1]<br><br>
+                                    
+                                    <span class="code-comment"># Calcular el total de ventas</span><br>
+                                    total_ventas = sum(ventas)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Total de ventas:"</span>, total_ventas, <span class="code-string">"mil dólares"</span>)<br><br>
+                                    
+                                    <span class="code-comment"># Calcular el promedio mensual</span><br>
+                                    promedio = total_ventas / len(ventas)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Promedio mensual:"</span>, <span class="code-function">round</span>(promedio, 2), <span class="code-string">"mil dólares"</span>)<br><br>
+                                    
+                                    <span class="code-comment"># Encontrar el mes con mayores ventas</span><br>
+                                    max_ventas = max(ventas)<br>
+                                    mes_max = ventas.index(max_ventas) + 1<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"El mes con mayores ventas fue el mes"</span>, mes_max)
+                                </div>
+                                
+                                <p><strong>Salida esperada:</strong></p>
+                                <div class="code-block">
+                                    Total de ventas: 91.6 mil dólares<br>
+                                    Promedio mensual: 15.27 mil dólares<br>
+                                    El mes con mayores ventas fue el mes 6
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Para instructores:</strong> Este ejemplo introduce conceptos importantes como variables, listas y funciones básicas, mostrando aplicaciones prácticas desde el principio.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicios -->
+                        <div class="tab-pane fade" id="v-pills-exercises" role="tabpanel" aria-labelledby="v-pills-exercises-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicios del módulo</h3>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-1"></i>
+                                        <h4>Ejercicio 1: Calculadora de propinas</h4>
+                                    </div>
+                                    <p>Crea un programa que calcule el monto de propina basado en el total de la cuenta y el porcentaje de propina.</p>
+                                    <p>El programa debe:</p>
+                                    <ul>
+                                        <li>Pedir al usuario el total de la cuenta</li>
+                                        <li>Pedir el porcentaje de propina deseado (ej. 15, 18, 20)</li>
+                                        <li>Calcular el monto de la propina</li>
+                                        <li>Mostrar el monto de propina y el total a pagar (cuenta + propina)</li>
+                                    </ul>
+                                    <p><strong>Ejemplo:</strong></p>
+                                    <div class="code-block">
+                                        Total de la cuenta: 120<br>
+                                        Porcentaje de propina: 15<br>
+                                        Propina: $18.0<br>
+                                        Total a pagar: $138.0
+                                    </div>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-2"></i>
+                                        <h4>Ejercicio 2: Conversor de temperaturas</h4>
+                                    </div>
+                                    <p>Crea un programa que convierta temperaturas de Celsius a Fahrenheit.</p>
+                                    <p>Fórmula: °F = (°C × 9/5) + 32</p>
+                                    <p>El programa debe:</p>
+                                    <ul>
+                                        <li>Pedir al usuario la temperatura en Celsius</li>
+                                        <li>Realizar la conversión</li>
+                                        <li>Mostrar el resultado en Fahrenheit</li>
+                                    </ul>
+                                    <p><strong>Ejemplo:</strong></p>
+                                    <div class="code-block">
+                                        Ingrese temperatura en Celsius: 25<br>
+                                        25°C equivalen a 77.0°F
+                                    </div>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-3"></i>
+                                        <h4>Ejercicio 3: Estadísticas simples</h4>
+                                    </div>
+                                    <p>Dada una lista de calificaciones de exámenes, calcula:</p>
+                                    <div class="code-block">
+                                        calificaciones = [85, 92, 78, 90, 88, 76, 95, 89]
+                                    </div>
+                                    <ul>
+                                        <li>El promedio de calificaciones</li>
+                                        <li>La calificación más alta</li>
+                                        <li>La calificación más baja</li>
+                                        <li>La diferencia entre la más alta y la más baja</li>
+                                    </ul>
+                                    <p>Muestra los resultados con mensajes descriptivos.</p>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-download me-2"></i> Descargar ejercicios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz de comprensión -->
+                        <div class="tab-pane fade" id="v-pills-quiz" role="tabpanel" aria-labelledby="v-pills-quiz-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-question-circle"></i>
+                                    </div>
+                                    <h3 class="mb-0">Quiz de comprensión</h3>
+                                </div>
+                                
+                                <p>Evalúa tu comprensión de los conceptos de este módulo con este breve quiz.</p>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>1. ¿Qué función se utiliza en Python para mostrar información en la consola?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        console.log()
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        print()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        display()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        show()
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>2. ¿Qué opción debes marcar durante la instalación de Python para poder ejecutarlo desde cualquier ubicación?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Install for all users
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        Add Python to PATH
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Customize installation
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Install pip
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>3. ¿Cómo se instala Jupyter Notebook usando pip?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        pip install jupyter
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        pip install notebook
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        python install jupyter
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        install jupyter-notebook
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>4. ¿Qué símbolo se utiliza para comentarios de una línea en Python?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        //
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        /*
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        #
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        --
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i> Enviar respuestas
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicio integrador -->
+                        <div class="tab-pane fade" id="v-pills-integration" role="tabpanel" aria-labelledby="v-pills-integration-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicio integrador del módulo</h3>
+                                </div>
+                                
+                                <div class="integration-exercise">
+                                    <h4>Análisis de datos de ventas</h4>
+                                    <p>Como analista de datos en una empresa minorista, te han proporcionado los datos de ventas semanales de 4 semanas:</p>
+                                    
+                                    <div class="code-block">
+                                        ventas_semana1 = [1200, 1500, 1350, 1600, 1800, 2100, 1950]<br>
+                                        ventas_semana2 = [1400, 1700, 1550, 1480, 2200, 1950, 2100]<br>
+                                        ventas_semana3 = [1800, 2100, 1900, 2200, 2300, 2500, 2400]<br>
+                                        ventas_semana4 = [2100, 2300, 2250, 2400, 2600, 2800, 2750]
+                                    </div>
+                                    
+                                    <p><strong>Tu tarea:</strong></p>
+                                    <ol>
+                                        <li>Calcular el total de ventas de cada semana</li>
+                                        <li>Calcular el promedio diario de ventas para cada semana</li>
+                                        <li>Identificar la semana con mayores ventas totales</li>
+                                        <li>Calcular el promedio de ventas de todo el mes</li>
+                                        <li>Mostrar todos los resultados con mensajes claros</li>
+                                    </ol>
+                                    
+                                    <p><strong>Requisitos adicionales:</strong></p>
+                                    <ul>
+                                        <li>Usa nombres de variables descriptivos</li>
+                                        <li>Agrega comentarios explicativos</li>
+                                        <li>Formatea los números para mostrar solo 2 decimales cuando sea necesario</li>
+                                        <li>Muestra los resultados de forma clara y organizada</li>
+                                    </ul>
+                                    
+                                    <h5 class="mt-4">Resultado esperado:</h5>
+                                    <div class="code-block">
+                                        === Análisis de Ventas Mensuales ===<br>
+                                        <br>
+                                        Ventas totales semana 1: $11,500.00<br>
+                                        Ventas totales semana 2: $12,380.00<br>
+                                        Ventas totales semana 3: $15,200.00<br>
+                                        Ventas totales semana 4: $17,200.00<br>
+                                        <br>
+                                        Promedio diario semana 1: $1,642.86<br>
+                                        Promedio diario semana 2: $1,768.57<br>
+                                        Promedio diario semana 3: $2,171.43<br>
+                                        Promedio diario semana 4: $2,457.14<br>
+                                        <br>
+                                        La semana con mayores ventas fue la semana 4 con $17,200.00<br>
+                                        <br>
+                                        Promedio mensual de ventas diarias: $1,999.29<br>
+                                        Total de ventas mensuales: $56,280.00
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-python">
+                                            <i class="fas fa-file-download me-2"></i> Descargar solución
+                                        </button>
+                                        <button class="btn btn-module-nav ms-2">
+                                            <i class="fas fa-video me-2"></i> Ver explicación en video
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-4 text-center bg-light rounded">
+                                    <h4>¡Felicidades por completar el Módulo 1!</h4>
+                                    <p>Has dado tus primeros pasos en el mundo de la programación con Python.</p>
+                                    <button class="btn btn-python btn-lg mt-2">
+                                        Continuar con el Módulo 2: Variables y tipos de datos <i class="fas fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navegación entre módulos -->
+            <div class="d-flex justify-content-between mt-4">
+                <a href="index.html"><button class="btn btn-module-nav">
+                    <i class="fas fa-arrow-left me-2"></i> Página de Inicio
+                </button></a>
+                <button class="btn btn-module-nav">
+                    Siguiente módulo <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para seleccionar opciones en el quiz
+        function selectOption(element) {
+            // Resetear todas las opciones en esta pregunta
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Marcar la opción seleccionada
+            element.classList.add('selected');
+        }
+        
+        // Actualizar barra de progreso al cambiar de sección
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const progressBar = document.querySelector('.progress-bar');
+                let progress = 20;
+                
+                if(this.id === 'v-pills-syntax-tab') progress = 40;
+                else if(this.id === 'v-pills-examples-tab') progress = 60;
+                else if(this.id === 'v-pills-exercises-tab') progress = 80;
+                else if(this.id === 'v-pills-quiz-tab') progress = 90;
+                else if(this.id === 'v-pills-integration-tab') progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressBar.setAttribute('aria-valuenow', progress);
+                progressBar.innerHTML = progress + '%';
+            });
+        });
+        
+        // Animación para los ejercicios
+        document.querySelectorAll('.exercise').forEach(exercise => {
+            exercise.addEventListener('click', function(e) {
+                if(e.target.classList.contains('btn')) {
+                    const solution = this.querySelector('.code-block:last-child');
+                    if(solution) {
+                        solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
