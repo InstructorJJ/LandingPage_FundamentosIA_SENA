@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo Interactivo: Markdown para Google Colab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .nav-tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code-example {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .code-header {
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            font-weight: 600;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .code-content {
+            padding: 15px;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+
+        .preview-box {
+            background: #fff;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .exercise {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .exercise h3 {
+            margin-bottom: 15px;
+        }
+
+        .exercise-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 5px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-copy {
+            background: #48bb78;
+        }
+
+        .btn-copy:hover {
+            background: #38a169;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .toc-example {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .tip {
+            background: #e6fffa;
+            border-left: 4px solid #38b2ac;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning {
+            background: #fffbeb;
+            border-left: 4px solid #f6ad55;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 Markdown para Google Colab</h1>
+            <p>Módulo interactivo para dominar Markdown en notebooks</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('basics')">Fundamentos</button>
+            <button class="nav-tab" onclick="showTab('toc')">Tabla de Contenido</button>
+            <button class="nav-tab" onclick="showTab('advanced')">Avanzado</button>
+            <button class="nav-tab" onclick="showTab('exercises')">Ejercicios</button>
+        </div>
+
+        <!-- TAB 1: FUNDAMENTOS -->
+        <div id="basics" class="tab-content active">
+            <div class="section">
+                <h2>🚀 Fundamentos de Markdown</h2>
+                
+                <div class="highlight">
+                    <h3>¿Qué es Markdown?</h3>
+                    <p>Markdown es un lenguaje de marcado ligero que permite formatear texto de manera sencilla. En Google Colab, se usa en celdas de texto para crear documentación, explicaciones y estructurar notebooks.</p>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Encabezados en Markdown</div>
+                    <div class="code-content">
+                        <pre># Encabezado 1 (H1)
+## Encabezado 2 (H2)
+### Encabezado 3 (H3)
+#### Encabezado 4 (H4)
+##### Encabezado 5 (H5)
+###### Encabezado 6 (H6)</pre>
+                        <div class="preview-box">
+                            <h1>Encabezado 1 (H1)</h1>
+                            <h2>Encabezado 2 (H2)</h2>
+                            <h3>Encabezado 3 (H3)</h3>
+                            <h4>Encabezado 4 (H4)</h4>
+                            <h5>Encabezado 5 (H5)</h5>
+                            <h6>Encabezado 6 (H6)</h6>
+                        </div>
+                        <button class="btn btn-copy" onclick="copyCode('# Encabezado 1 (H1)\\n## Encabezado 2 (H2)\\n### Encabezado 3 (H3)\\n#### Encabezado 4 (H4)\\n##### Encabezado 5 (H5)\\n###### Encabezado 6 (H6)')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Formato de Texto</div>
+                    <div class="code-content">
+                        <pre>**Texto en negrita**
+*Texto en cursiva*
+***Texto en negrita y cursiva***
+~~Texto tachado~~
+`Código en línea`
+> Cita o blockquote
+---
+Línea horizontal</pre>
+                        <div class="preview-box">
+                            <p><strong>Texto en negrita</strong></p>
+                            <p><em>Texto en cursiva</em></p>
+                            <p><strong><em>Texto en negrita y cursiva</em></strong></p>
+                            <p><s>Texto tachado</s></p>
+                            <p><code>Código en línea</code></p>
+                            <blockquote>Cita o blockquote</blockquote>
+                            <hr>
+                            <p>Línea horizontal</p>
+                        </div>
+                        <button class="btn btn-copy" onclick="copyCode('**Texto en negrita**\\n*Texto en cursiva*\\n***Texto en negrita y cursiva***\\n~~Texto tachado~~\\n`Código en línea`\\n> Cita o blockquote\\n---\\nLínea horizontal')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Listas</div>
+                    <div class="code-content">
+                        <pre>## Lista sin orden:
+- Elemento 1
+- Elemento 2
+  - Subelemento 2.1
+  - Subelemento 2.2
+- Elemento 3
+
+## Lista ordenada:
+1. Primer elemento
+2. Segundo elemento
+   1. Subelemento 2.1
+   2. Subelemento 2.2
+3. Tercer elemento</pre>
+                        <button class="btn btn-copy" onclick="copyCode('## Lista sin orden:\\n- Elemento 1\\n- Elemento 2\\n  - Subelemento 2.1\\n  - Subelemento 2.2\\n- Elemento 3\\n\\n## Lista ordenada:\\n1. Primer elemento\\n2. Segundo elemento\\n   1. Subelemento 2.1\\n   2. Subelemento 2.2\\n3. Tercer elemento')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Tip:</strong> En Google Colab, puedes cambiar una celda a Markdown usando Ctrl+M M o seleccionando "Markdown" en el menú desplegable de la celda.
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: TABLA DE CONTENIDO -->
+        <div id="toc" class="tab-content">
+            <div class="section">
+                <h2>📚 Tabla de Contenido (TOC)</h2>
+                
+                <div class="highlight">
+                    <h3>¿Por qué usar una Tabla de Contenido?</h3>
+                    <p>Una tabla de contenido hace que tus notebooks sean más navegables y profesionales, especialmente en proyectos largos de ciencia de datos o machine learning.</p>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Método 1: TOC Manual Básica</div>
+                    <div class="code-content">
+                        <pre># 📊 Análisis de Datos - Proyecto Final
+
+## 📋 Tabla de Contenido
+1. [Introducción](#introducción)
+2. [Carga de Datos](#carga-de-datos)
+3. [Análisis Exploratorio](#análisis-exploratorio)
+4. [Visualizaciones](#visualizaciones)
+5. [Modelado](#modelado)
+6. [Conclusiones](#conclusiones)
+
+---
+
+## Introducción
+Descripción del proyecto...
+
+## Carga de Datos
+Código para cargar los datos...
+
+## Análisis Exploratorio
+Exploración inicial de los datos...
+
+## Visualizaciones
+Gráficos y visualizaciones...
+
+## Modelado
+Implementación del modelo...
+
+## Conclusiones
+Resultados y conclusiones...</pre>
+                        <button class="btn btn-copy" onclick="copyCode('# 📊 Análisis de Datos - Proyecto Final\\n\\n## 📋 Tabla de Contenido\\n1. [Introducción](#introducción)\\n2. [Carga de Datos](#carga-de-datos)\\n3. [Análisis Exploratorio](#análisis-exploratorio)\\n4. [Visualizaciones](#visualizaciones)\\n5. [Modelado](#modelado)\\n6. [Conclusiones](#conclusiones)\\n\\n---')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Método 2: TOC con Emojis y Styling</div>
+                    <div class="code-content">
+                        <pre># 🎯 Machine Learning Pipeline
+
+<div style="background-color: #f0f8ff; padding: 20px; border-radius: 10px; border-left: 5px solid #4CAF50;">
+
+## 🗂️ Índice de Contenidos
+
+### 📝 **Preparación**
+- [🔍 1. Exploración Inicial](#🔍-1-exploración-inicial)
+- [🧹 2. Limpieza de Datos](#🧹-2-limpieza-de-datos)
+- [📊 3. Análisis Estadístico](#📊-3-análisis-estadístico)
+
+### 🤖 **Modelado**
+- [⚙️ 4. Preparación de Features](#⚙️-4-preparación-de-features)
+- [🎯 5. Entrenamiento del Modelo](#🎯-5-entrenamiento-del-modelo)
+- [📈 6. Evaluación](#📈-6-evaluación)
+
+### 📋 **Resultados**
+- [📊 7. Métricas](#📊-7-métricas)
+- [🎉 8. Conclusiones](#🎉-8-conclusiones)
+
+</div>
+
+---</pre>
+                        <button class="btn btn-copy" onclick="copyCode('# 🎯 Machine Learning Pipeline\\n\\n<div style=\"background-color: #f0f8ff; padding: 20px; border-radius: 10px; border-left: 5px solid #4CAF50;\">\\n\\n## 🗂️ Índice de Contenidos\\n\\n### 📝 **Preparación**\\n- [🔍 1. Exploración Inicial](#🔍-1-exploración-inicial)\\n- [🧹 2. Limpieza de Datos](#🧹-2-limpieza-de-datos)\\n- [📊 3. Análisis Estadístico](#📊-3-análisis-estadístico)\\n\\n### 🤖 **Modelado**\\n- [⚙️ 4. Preparación de Features](#⚙️-4-preparación-de-features)\\n- [🎯 5. Entrenamiento del Modelo](#🎯-5-entrenamiento-del-modelo)\\n- [📈 6. Evaluación](#📈-6-evaluación)\\n\\n### 📋 **Resultados**\\n- [📊 7. Métricas](#📊-7-métricas)\\n- [🎉 8. Conclusiones](#🎉-8-conclusiones)\\n\\n</div>')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Código Python: Generador Automático de TOC</div>
+                    <div class="code-content">
+                        <pre># Ejecutar en una celda de código para generar TOC automáticamente
+import re
+
+def generate_toc_from_notebook():
+    """
+    Genera una tabla de contenido automática basada en los encabezados Markdown
+    del notebook actual. Para usar en Google Colab.
+    """
+    # Simulación de encabezados encontrados en el notebook
+    headers = [
+        "# Proyecto de Análisis de Datos",
+        "## 1. Introducción",
+        "### 1.1 Objetivos",
+        "### 1.2 Metodología", 
+        "## 2. Carga y Exploración de Datos",
+        "### 2.1 Importación de Librerías",
+        "### 2.2 Carga del Dataset",
+        "## 3. Análisis Exploratorio",
+        "### 3.1 Estadísticas Descriptivas",
+        "### 3.2 Visualizaciones",
+        "## 4. Preprocesamiento",
+        "## 5. Modelado",
+        "### 5.1 Selección del Modelo",
+        "### 5.2 Entrenamiento",
+        "## 6. Evaluación",
+        "## 7. Conclusiones"
+    ]
+    
+    toc_lines = ["## 📋 Tabla de Contenido\n"]
+    
+    for header in headers:
+        # Extraer nivel y texto del encabezado
+        level = len(re.match(r'^#+', header).group())
+        text = header.lstrip('#').strip()
+        
+        # Crear ancla (link interno)
+        anchor = text.lower().replace(' ', '-').replace('.', '')
+        anchor = re.sub(r'[^\w\-]', '', anchor)
+        
+        # Generar indentación según el nivel
+        indent = '  ' * (level - 1)
+        
+        # Agregar número si no lo tiene
+        if level == 2 and not re.match(r'^\d+\.', text):
+            continue  # Saltar el título principal
+        
+        toc_lines.append(f"{indent}- [{text}](#{anchor})")
+    
+    return '\n'.join(toc_lines)
+
+# Generar y mostrar la TOC
+toc_markdown = generate_toc_from_notebook()
+print("Copia este código en una celda Markdown:")
+print("="*50)
+print(toc_markdown)</pre>
+                        <button class="btn btn-copy" onclick="copyCode('import re\\n\\ndef generate_toc_from_notebook():\\n    headers = [\\n        \"# Proyecto de Análisis de Datos\",\\n        \"## 1. Introducción\",\\n        \"### 1.1 Objetivos\",\\n        \"### 1.2 Metodología\", \\n        \"## 2. Carga y Exploración de Datos\",\\n        \"### 2.1 Importación de Librerías\",\\n        \"### 2.2 Carga del Dataset\",\\n        \"## 3. Análisis Exploratorio\",\\n        \"### 3.1 Estadísticas Descriptivas\",\\n        \"### 3.2 Visualizaciones\",\\n        \"## 4. Preprocesamiento\",\\n        \"## 5. Modelado\",\\n        \"### 5.1 Selección del Modelo\",\\n        \"### 5.2 Entrenamiento\",\\n        \"## 6. Evaluación\",\\n        \"## 7. Conclusiones\"\\n    ]\\n    \\n    toc_lines = [\"## 📋 Tabla de Contenido\\n\"]\\n    \\n    for header in headers:\\n        level = len(re.match(r\"^#+\", header).group())\\n        text = header.lstrip(\"#\").strip()\\n        anchor = text.lower().replace(\" \", \"-\").replace(\".\", \"\")\\n        anchor = re.sub(r\"[^\\w\\-]\", \"\", anchor)\\n        indent = \"  \" * (level - 1)\\n        if level == 2 and not re.match(r\"^\\d+\\.\", text):\\n            continue\\n        toc_lines.append(f\"{indent}- [{text}](#{anchor})\")\\n    \\n    return \"\\n\".join(toc_lines)\\n\\ntoc_markdown = generate_toc_from_notebook()\\nprint(toc_markdown)')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="toc-example">
+                    <h3>Resultado del Generador Automático:</h3>
+                    <div class="preview-box">
+                        <h2>📋 Tabla de Contenido</h2>
+                        <ul>
+                            <li><a href="#1-introducción">1. Introducción</a>
+                                <ul>
+                                    <li><a href="#11-objetivos">1.1 Objetivos</a></li>
+                                    <li><a href="#12-metodología">1.2 Metodología</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#2-carga-y-exploración-de-datos">2. Carga y Exploración de Datos</a>
+                                <ul>
+                                    <li><a href="#21-importación-de-librerías">2.1 Importación de Librerías</a></li>
+                                    <li><a href="#22-carga-del-dataset">2.2 Carga del Dataset</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#3-análisis-exploratorio">3. Análisis Exploratorio</a></li>
+                            <li><a href="#4-preprocesamiento">4. Preprocesamiento</a></li>
+                            <li><a href="#5-modelado">5. Modelado</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    <strong>⚠️ Importante:</strong> Los enlaces internos en Google Colab funcionan automáticamente con los encabezados Markdown. Asegúrate de que los nombres de las secciones coincidan exactamente.
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: AVANZADO -->
+        <div id="advanced" class="tab-content">
+            <div class="section">
+                <h2>🔥 Markdown Avanzado</h2>
+
+                <div class="code-example">
+                    <div class="code-header">Tablas</div>
+                    <div class="code-content">
+                        <pre>| Algoritmo | Precisión | Recall | F1-Score |
+|-----------|-----------|--------|----------|
+| Random Forest | 0.85 | 0.82 | 0.83 |
+| SVM | 0.79 | 0.77 | 0.78 |
+| Logistic Regression | 0.81 | 0.80 | 0.80 |
+| XGBoost | 0.87 | 0.85 | 0.86 |
+
+### Tabla con alineación:
+| Izquierda | Centro | Derecha |
+|:----------|:------:|--------:|
+| Texto | Centrado | $100.00 |
+| Más texto | También centrado | $250.50 |</pre>
+                        <button class="btn btn-copy" onclick="copyCode('| Algoritmo | Precisión | Recall | F1-Score |\\n|-----------|-----------|--------|----------|\\n| Random Forest | 0.85 | 0.82 | 0.83 |\\n| SVM | 0.79 | 0.77 | 0.78 |\\n| Logistic Regression | 0.81 | 0.80 | 0.80 |\\n| XGBoost | 0.87 | 0.85 | 0.86 |')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">HTML y CSS Embebido</div>
+                    <div class="code-content">
+                        <pre>&lt;div style="background: linear-gradient(90deg, #FF6B6B, #4ECDC4); 
+            padding: 20px; 
+            border-radius: 15px; 
+            color: white; 
+            text-align: center;"&gt;
+  &lt;h2&gt;🎯 Resultados del Modelo&lt;/h2&gt;
+  &lt;p&gt;&lt;strong&gt;Accuracy:&lt;/strong&gt; 94.5%&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Tiempo de entrenamiento:&lt;/strong&gt; 2.3 segundos&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+&lt;div style="display: flex; justify-content: space-around; 
+            background-color: #f8f9fa; 
+            padding: 15px; 
+            border-radius: 10px;"&gt;
+  &lt;div style="text-align: center;"&gt;
+    &lt;h3&gt;📊 Precisión&lt;/h3&gt;
+    &lt;h1 style="color: #28a745;"&gt;85%&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div style="text-align: center;"&gt;
+    &lt;h3&gt;🎯 Recall&lt;/h3&gt;
+    &lt;h1 style="color: #17a2b8;"&gt;82%&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div style="text-align: center;"&gt;
+    &lt;h3&gt;⚖️ F1-Score&lt;/h3&gt;
+    &lt;h1 style="color: #ffc107;"&gt;83%&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+                        <button class="btn btn-copy" onclick="copyCode('<div style=\"background: linear-gradient(90deg, #FF6B6B, #4ECDC4); padding: 20px; border-radius: 15px; color: white; text-align: center;\">\\n  <h2>🎯 Resultados del Modelo</h2>\\n  <p><strong>Accuracy:</strong> 94.5%</p>\\n  <p><strong>Tiempo de entrenamiento:</strong> 2.3 segundos</p>\\n</div>')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Bloques de Código con Sintaxis</div>
+                    <div class="code-content">
+                        <pre>```python
+# Análisis exploratorio de datos
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Cargar datos
+df = pd.read_csv('dataset.csv')
+
+# Información básica
+print(f"Shape del dataset: {df.shape}")
+print(f"Columnas: {list(df.columns)}")
+
+# Estadísticas descriptivas
+df.describe()
+```
+
+```sql
+-- Query para análisis de ventas
+SELECT 
+    producto,
+    SUM(cantidad) as total_vendido,
+    AVG(precio) as precio_promedio
+FROM ventas 
+WHERE fecha >= '2024-01-01'
+GROUP BY producto
+ORDER BY total_vendido DESC;
+```</pre>
+                        <button class="btn btn-copy" onclick="copyCode('```python\\n# Análisis exploratorio de datos\\nimport pandas as pd\\nimport numpy as np\\nimport matplotlib.pyplot as plt\\nimport seaborn as sns\\n\\n# Cargar datos\\ndf = pd.read_csv(\\'dataset.csv\\')\\n\\n# Información básica\\nprint(f\"Shape del dataset: {df.shape}\")\\nprint(f\"Columnas: {list(df.columns)}\")\\n\\n# Estadísticas descriptivas\\ndf.describe()\\n```')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">LaTeX para Matemáticas</div>
+                    <div class="code-content">
+                        <pre>## Fórmulas matemáticas:
+
+### Precisión:
+$Precision = \frac{TP}{TP + FP}$
+
+### Recall:
+$Recall = \frac{TP}{TP + FN}$
+
+### F1-Score:
+$F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall}$
+
+### Regresión Lineal:
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_n x_n + \epsilon$
+
+### Función de pérdida (MSE):
+$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$</pre>
+                        <button class="btn btn-copy" onclick="copyCode('## Fórmulas matemáticas:\\n\\n### Precisión:\\n$Precision = \\\\frac{TP}{TP + FP}$\\n\\n### Recall:\\n$Recall = \\\\frac{TP}{TP + FN}$\\n\\n### F1-Score:\\n$F1 = 2 \\\\times \\\\frac{Precision \\\\times Recall}{Precision + Recall}$')">Copiar Código</button>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <div class="code-header">Badges y Elementos Visuales</div>
+                    <div class="code-content">
+                        <pre>## Estado del Proyecto:
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)
+![Status](https://img.shields.io/badge/Status-En%20Desarrollo-yellow?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
+## Progreso:
+
+### Completado ✅
+- [x] Carga de datos
+- [x] Limpieza básica
+- [x] Análisis exploratorio
+
+### En progreso 🔄
+- [ ] Feature engineering
+- [ ] Modelado avanzado
+- [ ] Optimización de hiperparámetros
+
+### Pendiente ⏳
+- [ ] Deployment
+- [ ] Documentación final
+- [ ] Testing</pre>
+                        <button class="btn btn-copy" onclick="copyCode('## Estado del Proyecto:\\n\\n![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)\\n![Status](https://img.shields.io/badge/Status-En%20Desarrollo-yellow?style=flat-square)\\n![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)\\n\\n## Progreso:\\n\\n### Completado ✅\\n- [x] Carga de datos\\n- [x] Limpieza básica\\n- [x] Análisis exploratorio')">Copiar Código</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: EJERCICIOS -->
+        <div id="exercises" class="tab-content">
+            <div class="section">
+                <h2>🎯 Ejercicios Prácticos</h2>
+
+                <div class="exercise">
+                    <h3>📝 Ejercicio 1: Crear una TOC Básica</h3>
+                    <p>Crea una tabla de contenido para un proyecto de análisis de ventas que incluya: Introducción, Carga de Datos, Análisis por Región, Tendencias Temporales, y Conclusiones.</p>
+                    <textarea class="exercise-input" id="exercise1" placeholder="Escribe tu solución aquí..."></textarea>
+                    <button class="btn" onclick="checkExercise1()">Verificar</button>
+                    <button class="btn" onclick="showSolution1()">Ver Solución</button>
+                    <div id="result1" class="result" style="display: none;"></div>
+                </div>
+
+                <div class="exercise">
+                    <h3>📊 Ejercicio 2: Tabla de Resultados</h3>
+                    <p>Crea una tabla que compare 4 algoritmos de machine learning (Random Forest, SVM, XGBoost, Neural Network) con sus métricas de Accuracy, Precision, Recall y F1-Score.</p>
+                    <textarea class="exercise-input" id="exercise2" placeholder="Escribe tu tabla en Markdown..."></textarea>
+                    <button class="btn" onclick="checkExercise2()">Verificar</button>
+                    <button class="btn" onclick="showSolution2()">Ver Solución</button>
+                    <div id="result2" class="result" style="display: none;"></div>
+                </div>
+
+                <div class="exercise">
+                    <h3>🎨 Ejercicio 3: Sección con HTML Personalizado</h3>
+                    <p>Crea una sección de resultados usando HTML y CSS que muestre 3 métricas principales con colores diferentes y un diseño atractivo.</p>
+                    <textarea class="exercise-input" id="exercise3" placeholder="Usa HTML y CSS inline..."></textarea>
+                    <button class="btn" onclick="checkExercise3()">Verificar</button>
+                    <button class="btn" onclick="showSolution3()">Ver Solución</button>
+                    <div id="result3" class="result" style="display: none;"></div>
+                </div>
+
+                <div class="exercise">
+                    <h3>🔢 Ejercicio 4: Fórmulas Matemáticas</h3>
+                    <p>Escribe las fórmulas LaTeX para: Media aritmética, Desviación estándar, y Coeficiente de correlación de Pearson.</p>
+                    <textarea class="exercise-input" id="exercise4" placeholder="Usa LaTeX con $ ... $"></textarea>
+                    <button class="btn" onclick="checkExercise4()">Verificar</button>
+                    <button class="btn" onclick="showSolution4()">Ver Solución</button>
+                    <div id="result4" class="result" style="display: none;"></div>
+                </div>
+
+                <div class="exercise">
+                    <h3>🚀 Ejercicio 5: Proyecto Completo</h3>
+                    <p>Crea la estructura completa de un notebook de Machine Learning incluyendo: título, TOC con emojis, secciones principales, y un bloque de código Python de ejemplo.</p>
+                    <textarea class="exercise-input" id="exercise5" placeholder="Combina todo lo aprendido..." style="min-height: 200px;"></textarea>
+                    <button class="btn" onclick="checkExercise5()">Verificar</button>
+                    <button class="btn" onclick="showSolution5()">Ver Solución</button>
+                    <div id="result5" class="result" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📚 Recursos Adicionales</h2>
+                <div class="highlight">
+                    <h3>Tips para Notebooks Profesionales:</h3>
+                    <ul>
+                        <li><strong>Consistencia:</strong> Usa el mismo estilo de encabezados en todo el notebook</li>
+                        <li><strong>Emojis:</strong> Úsalos moderadamente para mejorar la legibilidad</li>
+                        <li><strong>Secciones claras:</strong> Separa el código del análisis con explicaciones</li>
+                        <li><strong>TOC al inicio:</strong> Siempre incluye una tabla de contenido en proyectos largos</li>
+                        <li><strong>Documentación:</strong> Explica cada paso de tu análisis</li>
+                    </ul>
+                </div>
+
+                <div class="tip">
+                    <strong>💡 Shortcuts útiles en Google Colab:</strong><br>
+                    • Ctrl+M M: Cambiar celda a Markdown<br>
+                    • Ctrl+M Y: Cambiar celda a código<br>
+                    • Ctrl+M A: Insertar celda arriba<br>
+                    • Ctrl+M B: Insertar celda abajo<br>
+                    • Shift+Enter: Ejecutar celda
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Ocultar todas las pestañas
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Quitar clase active de todos los botones
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Mostrar la pestaña seleccionada
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function copyCode(code) {
+            const decodedCode = code.replace(/\\n/g, '\n');
+            navigator.clipboard.writeText(decodedCode).then(() => {
+                // Mostrar feedback visual
+                event.target.textContent = '¡Copiado!';
+                event.target.style.background = '#28a745';
+                setTimeout(() => {
+                    event.target.textContent = 'Copiar Código';
+                    event.target.style.background = '#48bb78';
+                }, 2000);
+            });
+        }
+
+        // Ejercicio 1
+        function checkExercise1() {
+            const answer = document.getElementById('exercise1').value.toLowerCase();
+            const result = document.getElementById('result1');
+            
+            if (answer.includes('tabla de contenido') || answer.includes('índice')) {
+                if (answer.includes('introducción') && answer.includes('datos') && answer.includes('conclusiones')) {
+                    result.innerHTML = '✅ ¡Excelente! Has incluido los elementos esenciales de una TOC.';
+                    result.style.background = '#d4edda';
+                    result.style.color = '#155724';
+                } else {
+                    result.innerHTML = '⚠️ Bien empezado, pero faltan algunas secciones mencionadas.';
+                    result.style.background = '#fff3cd';
+                    result.style.color = '#856404';
+                }
+            } else {
+                result.innerHTML = '❌ Recuerda incluir un título para la tabla de contenido.';
+                result.style.background = '#f8d7da';
+                result.style.color = '#721c24';
+            }
+            result.style.display = 'block';
+        }
+
+        function showSolution1() {
+            const result = document.getElementById('result1');
+            result.innerHTML = `
+                <strong>💡 Solución:</strong><br><br>
+                <pre># 📊 Análisis de Ventas 2024
+
+## 📋 Tabla de Contenido
+1. [📝 Introducción](#introducción)
+2. [📂 Carga de Datos](#carga-de-datos)
+3. [🌍 Análisis por Región](#análisis-por-región)
+4. [📈 Tendencias Temporales](#tendencias-temporales)
+5. [🎯 Conclusiones](#conclusiones)</pre>
+            `;
+            result.style.display = 'block';
+            result.style.background = '#e7f3ff';
+            result.style.color = '#004085';
+        }
+
+        // Ejercicio 2
+        function checkExercise2() {
+            const answer = document.getElementById('exercise2').value;
+            const result = document.getElementById('result2');
+            
+            if (answer.includes('|') && answer.includes('Random Forest') && answer.includes('Accuracy')) {
+                result.innerHTML = '✅ ¡Perfecto! Has creado una tabla bien estructurada.';
+                result.style.background = '#d4edda';
+                result.style.color = '#155724';
+            } else if (answer.includes('|')) {
+                result.innerHTML = '⚠️ Tienes la estructura de tabla, pero revisa el contenido.';
+                result.style.background = '#fff3cd';
+                result.style.color = '#856404';
+            } else {
+                result.innerHTML = '❌ Recuerda usar el formato de tabla con | para separar columnas.';
+                result.style.background = '#f8d7da';
+                result.style.color = '#721c24';
+            }
+            result.style.display = 'block';
+        }
+
+        function showSolution2() {
+            const result = document.getElementById('result2');
+            result.innerHTML = `
+                <strong>💡 Solución:</strong><br><br>
+                <pre>| Algoritmo | Accuracy | Precision | Recall | F1-Score |
+|-----------|----------|-----------|--------|----------|
+| Random Forest | 0.89 | 0.87 | 0.85 | 0.86 |
+| SVM | 0.82 | 0.80 | 0.78 | 0.79 |
+| XGBoost | 0.91 | 0.89 | 0.88 | 0.88 |
+| Neural Network | 0.86 | 0.84 | 0.82 | 0.83 |</pre>
+            `;
+            result.style.display = 'block';
+            result.style.background = '#e7f3ff';
+            result.style.color = '#004085';
+        }
+
+        // Ejercicio 3
+        function checkExercise3() {
+            const answer = document.getElementById('exercise3').value.toLowerCase();
+            const result = document.getElementById('result3');
+            
+            if (answer.includes('<div') && answer.includes('style') && answer.includes('color')) {
+                result.innerHTML = '✅ ¡Excelente! Has usado HTML con estilos personalizados.';
+                result.style.background = '#d4edda';
+                result.style.color = '#155724';
+            } else if (answer.includes('<div')) {
+                result.innerHTML = '⚠️ Bien, pero intenta agregar más estilos CSS.';
+                result.style.background = '#fff3cd';
+                result.style.color = '#856404';
+            } else {
+                result.innerHTML = '❌ Necesitas usar elementos HTML con estilos CSS inline.';
+                result.style.background = '#f8d7da';
+                result.style.color = '#721c24';
+            }
+            result.style.display = 'block';
+        }
+
+        function showSolution3() {
+            const result = document.getElementById('result3');
+            result.innerHTML = `
+                <strong>💡 Solución:</strong><br><br>
+                <pre>&lt;div style="display: flex; justify-content: space-around; 
+            background-color: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 10px;"&gt;
+  &lt;div style="text-align: center;"&gt;
+    &lt;h3 style="color: #28a745;"&gt;📊 Accuracy&lt;/h3&gt;
+    &lt;h1&gt;94.5%&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div style="text-align: center;"&gt;
+    &lt;h3 style="color: #17a2b8;"&gt;🎯 Precision&lt;/h3&gt;
+    &lt;h1&gt;91.2%&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div style="text-align: center;"&gt;
+    &lt;h3 style="color: #ffc107;"&gt;⚡ Recall&lt;/h3&gt;
+    &lt;h1&gt;89.8%&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+            `;
+            result.style.display = 'block';
+            result.style.background = '#e7f3ff';
+            result.style.color = '#004085';
+        }
+
+        // Ejercicio 4
+        function checkExercise4() {
+            const answer = document.getElementById('exercise4').value;
+            const result = document.getElementById('result4');
+            
+            if (answer.includes('$') && (answer.includes('\\frac') || answer.includes('\\sum'))) {
+                result.innerHTML = '✅ ¡Perfecto! Has usado LaTeX correctamente.';
+                result.style.background = '#d4edda';
+                result.style.color = '#155724';
+            } else if (answer.includes('$')) {
+                result.innerHTML = '⚠️ Tienes la sintaxis básica, pero revisa las fórmulas.';
+                result.style.background = '#fff3cd';
+                result.style.color = '#856404';
+            } else {
+                result.innerHTML = '❌ Recuerda usar $ para delimitar las fórmulas LaTeX.';
+                result.style.background = '#f8d7da';
+                result.style.color = '#721c24';
+            }
+            result.style.display = 'block';
+        }
+
+        function showSolution4() {
+            const result = document.getElementById('result4');
+            result.innerHTML = `
+                <strong>💡 Solución:</strong><br><br>
+                <pre>### Media aritmética:
+$\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i$
+
+### Desviación estándar:
+$\\sigma = \\sqrt{\\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}$
+
+### Coeficiente de correlación de Pearson:
+$r = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum_{i=1}^{n} (x_i - \\bar{x})^2 \\sum_{i=1}^{n} (y_i - \\bar{y})^2}}$</pre>
+            `;
+            result.style.display = 'block';
+            result.style.background = '#e7f3ff';
+            result.style.color = '#004085';
+        }
+
+        // Ejercicio 5
+        function checkExercise5() {
+            const answer = document.getElementById('exercise5').value.toLowerCase();
+            const result = document.getElementById('result5');
+            
+            let score = 0;
+            const checks = [
+                { condition: answer.includes('#'), points: 1, message: 'Título principal' },
+                { condition: answer.includes('tabla') || answer.includes('contenido'), points: 1, message: 'Tabla de contenido' },
+                { condition: answer.includes('```python'), points: 1, message: 'Bloque de código Python' },
+                { condition: answer.includes('import'), points: 1, message: 'Importación de librerías' },
+                { condition: /[📊🎯🔍📈🚀🎉]/.test(answer), points: 1, message: 'Uso de emojis' }
+            ];
+            
+            checks.forEach(check => {
+                if (check.condition) score += check.points;
+            });
+            
+            if (score >= 4) {
+                result.innerHTML = '🎉 ¡Excelente trabajo! Has creado un notebook muy completo.';
+                result.style.background = '#d4edda';
+                result.style.color = '#155724';
+            } else if (score >= 2) {
+                result.innerHTML = `⚠️ Buen intento. Tienes ${score}/5 elementos. Intenta agregar más componentes.`;
+                result.style.background = '#fff3cd';
+                result.style.color = '#856404';
+            } else {
+                result.innerHTML = '❌ Necesitas incluir más elementos: título, TOC, código, etc.';
+                result.style.background = '#f8d7da';
+                result.style.color = '#721c24';
+            }
+            result.style.display = 'block';
+        }
+
+        function showSolution5() {
+            const result = document.getElementById('result5');
+            result.innerHTML = `
+                <strong>💡 Solución completa:</strong><br><br>
+                <pre># 🤖 Proyecto de Machine Learning: Predicción de Ventas
+
+## 📋 Tabla de Contenido
+1. [🔍 Introducción y Objetivos](#🔍-introducción-y-objetivos)
+2. [📂 Carga y Exploración de Datos](#📂-carga-y-exploración-de-datos)
+3. [🧹 Preprocesamiento](#🧹-preprocesamiento)
+4. [📊 Análisis Exploratorio](#📊-análisis-exploratorio)
+5. [🎯 Modelado](#🎯-modelado)
+6. [📈 Evaluación](#📈-evaluación)
+7. [🚀 Conclusiones](#🚀-conclusiones)
+
+---
+
+## 🔍 Introducción y Objetivos
+Este proyecto tiene como objetivo predecir las ventas...
+
+## 📂 Carga y Exploración de Datos
+
+\`\`\`python
+# Importar librerías necesarias
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+
+# Cargar datos
+df = pd.read_csv('ventas_data.csv')
+print(f"Shape del dataset: {df.shape}")
+df.head()
+\`\`\`</pre>
+            `;
+            result.style.display = 'block';
+            result.style.background = '#e7f3ff';
+            result.style.color = '#004085';
+        }
+    </script>
+</body>
+</html>

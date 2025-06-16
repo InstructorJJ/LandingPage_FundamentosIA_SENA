@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Variables y Tipos de Datos | Fundamentos de Programación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --python-yellow: #ffde57;
+            --python-blue: #4584b6;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+        
+        .module-header {
+            background: linear-gradient(120deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 5rem 0 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 5px solid var(--python-yellow);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .module-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .module-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            position: relative;
+            top: -30px;
+            max-width: 800px;
+            margin: -30px auto 2rem;
+        }
+        
+        .progress {
+            height: 25px;
+            border-radius: 12px;
+            background-color: #e9ecef;
+            overflow: visible;
+            flex: 1;
+            margin-right: 1rem;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            border-radius: 12px;
+            position: relative;
+            transition: width 0.8s ease;
+        }
+        
+        .module-nav {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .nav-item {
+            margin: 0.5rem 0;
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(120deg, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .section-icon {
+            background: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-keyword {
+            color: #ff79c6;
+        }
+        
+        .code-function {
+            color: #50fa7b;
+        }
+        
+        .code-string {
+            color: #f1fa8c;
+        }
+        
+        .code-comment {
+            color: #6272a4;
+        }
+        
+        .code-type {
+            color: #8be9fd;
+        }
+        
+        .exercise {
+            background: #e3f2fd;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .exercise-title {
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-title i {
+            margin-right: 10px;
+        }
+        
+        .quiz-option {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--accent);
+            background: #f0f7ff;
+        }
+        
+        .quiz-option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .quiz-option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .btn-python {
+            background: linear-gradient(120deg, var(--python-yellow), var(--python-blue));
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-python:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0,0,0,0.15);
+        }
+        
+        .btn-module-nav {
+            background: var(--light);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-module-nav:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .badge-module {
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .integration-exercise {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e3f2fd 100%);
+            border-left: 4px solid var(--success);
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .step-circle {
+            width: 30px;
+            height: 30px;
+            background: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .screenshot {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            margin: 1.5rem 0;
+            border: 1px solid #dee2e6;
+        }
+        
+        .screenshot img {
+            width: 100%;
+            display: block;
+        }
+        
+        .screenshot-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+        
+        .tip-box {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            border-radius: 0 8px 8px 0;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tip-box i {
+            color: #ffc107;
+            margin-right: 10px;
+        }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .data-type-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            border-top: 4px solid var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .data-type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .data-type-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .data-type-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .type-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .type-table th, .type-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .type-table th {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .type-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado del módulo -->
+    <div class="module-header text-center">
+        <div class="container">
+            <div class="module-header-content">
+                <h1 class="display-4 fw-bold">Módulo 2: Variables y Tipos de Datos</h1>
+                <p class="lead">Almacena información y comprende los diferentes tipos de datos</p>
+                <span class="badge badge-module">Semana 2</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de progreso del módulo -->
+    <div class="container">
+        <div class="module-progress">
+            <div style="flex: 1;">
+                <h5 class="mb-2">Progreso del módulo</h5>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-python">
+                    <i class="fas fa-save me-1"></i> Guardar progreso
+                </button>
+            </div>
+        </div>
+
+        <!-- Navegación del módulo -->
+        <div class="module-nav">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-intro-tab" data-bs-toggle="pill" href="#v-pills-intro" role="tab" aria-controls="v-pills-intro" aria-selected="true">
+                            <i class="fas fa-home me-2"></i>Introducción
+                        </a>
+                        <a class="nav-link" id="v-pills-variables-tab" data-bs-toggle="pill" href="#v-pills-variables" role="tab" aria-controls="v-pills-variables" aria-selected="false">
+                            <i class="fas fa-cube me-2"></i>Variables
+                        </a>
+                        <a class="nav-link" id="v-pills-types-tab" data-bs-toggle="pill" href="#v-pills-types" role="tab" aria-controls="v-pills-types" aria-selected="false">
+                            <i class="fas fa-list-ol me-2"></i>Tipos de datos
+                        </a>
+                        <a class="nav-link" id="v-pills-examples-tab" data-bs-toggle="pill" href="#v-pills-examples" role="tab" aria-controls="v-pills-examples" aria-selected="false">
+                            <i class="fas fa-chart-line me-2"></i>Ejemplos prácticos
+                        </a>
+                        <a class="nav-link" id="v-pills-exercises-tab" data-bs-toggle="pill" href="#v-pills-exercises" role="tab" aria-controls="v-pills-exercises" aria-selected="false">
+                            <i class="fas fa-dumbbell me-2"></i>Ejercicios
+                        </a>
+                        <a class="nav-link" id="v-pills-quiz-tab" data-bs-toggle="pill" href="#v-pills-quiz" role="tab" aria-controls="v-pills-quiz" aria-selected="false">
+                            <i class="fas fa-question-circle me-2"></i>Quiz de comprensión
+                        </a>
+                        <a class="nav-link" id="v-pills-integration-tab" data-bs-toggle="pill" href="#v-pills-integration" role="tab" aria-controls="v-pills-integration" aria-selected="false">
+                            <i class="fas fa-project-diagram me-2"></i>Ejercicio integrador
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <!-- Introducción -->
+                        <div class="tab-pane fade show active" id="v-pills-intro" role="tabpanel" aria-labelledby="v-pills-intro-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <h3 class="mb-0">Introducción al módulo</h3>
+                                </div>
+                                <p>Las variables son fundamentales en programación. Son como contenedores que almacenan información que puedes usar y modificar a lo largo de tu programa. En este módulo, aprenderás a crear y usar variables, y conocerás los diferentes tipos de datos que Python maneja.</p>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Concepto clave para instructores:</strong> Las variables son nombres que apuntan a valores almacenados en la memoria. En Python, el tipo de dato se asigna dinámicamente según el valor que le asignes.
+                                </div>
+                                
+                                <h4 class="mt-4">Lo que aprenderás en este módulo:</h4>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-cube"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Variables</h5>
+                                                </div>
+                                                <p class="mb-0">Crear y usar variables para almacenar información</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-list-ol"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Tipos de datos</h5>
+                                                </div>
+                                                <p class="mb-0">Enteros, flotantes, cadenas, booleanos y más</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-exchange-alt"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Conversiones</h5>
+                                                </div>
+                                                <p class="mb-0">Convertir entre diferentes tipos de datos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-calculator"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Operaciones</h5>
+                                                </div>
+                                                <p class="mb-0">Realizar operaciones con diferentes tipos de datos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 800 400'%3E%3Crect fill='%234361ee' x='50' y='150' width='100' height='100'/%3E%3Ctext fill='white' font-family='Arial' font-size='20' x='100' y='210' text-anchor='middle'%3Eedad%3C/text%3E%3Crect fill='%234895ef' x='200' y='150' width='100' height='100'/%3E%3Ctext fill='white' font-family='Arial' font-size='20' x='250' y='210' text-anchor='middle'%3Enombre%3C/text%3E%3Crect fill='%234cc9f0' x='350' y='150' width='100' height='100'/%3E%3Ctext fill='white' font-family='Arial' font-size='20' x='400' y='210' text-anchor='middle'%3Ealtura%3C/text%3E%3Crect fill='%23ffde57' x='500' y='150' width='100' height='100'/%3E%3Ctext fill='%234584b6' font-family='Arial' font-size='20' x='550' y='210' text-anchor='middle'%3Eactivo%3C/text%3E%3Ctext fill='%23333' font-family='Arial' font-size='30' x='400' y='80' text-anchor='middle'%3EVariables%3C/text%3E%3Ctext fill='%23333' font-family='Arial' font-size='16' x='100' y='270' text-anchor='middle'%3E25%3C/text%3E%3Ctext fill='%23333' font-family='Arial' font-size='16' x='250' y='270' text-anchor='middle'%3E%22María%22%3C/text%3E%3Ctext fill='%23333' font-family='Arial' font-size='16' x='400' y='270' text-anchor='middle'%3E1.68%3C/text%3E%3Ctext fill='%23333' font-family='Arial' font-size='16' x='550' y='270' text-anchor='middle'%3ETrue%3C/text%3E%3C/svg%3E" 
+                                         alt="Representación visual de variables" class="img-fluid rounded">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Variables -->
+                        <div class="tab-pane fade" id="v-pills-variables" role="tabpanel" aria-labelledby="v-pills-variables-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-cube"></i>
+                                    </div>
+                                    <h3 class="mb-0">Variables en Python</h3>
+                                </div>
+                                
+                                <p>Las variables son nombres que asignamos a valores almacenados en la memoria. En Python, crear una variable es tan simple como asignarle un valor:</p>
+                                
+                                <div class="code-block">
+                                    <span class="code-comment"># Crear una variable y asignarle un valor</span><br>
+                                    edad = 25<br>
+                                    nombre = "María"<br>
+                                    altura = 1.68<br>
+                                    estudiante = True<br><br>
+                                    
+                                    <span class="code-comment"># Usar las variables</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Nombre:"</span>, nombre)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Edad:"</span>, edad, <span class="code-string">"años"</span>)
+                                </div>
+                                
+                                <h4 class="mt-4">Reglas para nombres de variables</h4>
+                                <ul>
+                                    <li>Pueden contener letras, números y guiones bajos (_)</li>
+                                    <li>Deben comenzar con una letra o guión bajo</li>
+                                    <li>No pueden comenzar con un número</li>
+                                    <li>Son sensibles a mayúsculas y minúsculas (edad ≠ Edad ≠ EDAD)</li>
+                                    <li>No pueden ser palabras reservadas (if, for, while, etc.)</li>
+                                </ul>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card border-success mb-4">
+                                            <div class="card-header bg-success text-white">
+                                                <i class="fas fa-check-circle me-2"></i>Nombres válidos
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="mb-0">
+                                                    <li>edad</li>
+                                                    <li>nombre_completo</li>
+                                                    <li>_contador</li>
+                                                    <li>valor1</li>
+                                                    <li>ValorInicial</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card border-danger mb-4">
+                                            <div class="card-header bg-danger text-white">
+                                                <i class="fas fa-times-circle me-2"></i>Nombres inválidos
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="mb-0">
+                                                    <li>1valor (comienza con número)</li>
+                                                    <li>nombre completo (contiene espacio)</li>
+                                                    <li>for (palabra reservada)</li>
+                                                    <li>valor-total (contiene guión)</li>
+                                                    <li>valor$ (carácter especial)</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Convenciones de estilo:</strong> En Python se usa snake_case para nombres de variables (ej: nombre_completo). Esto hace el código más legible y es una buena práctica.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tipos de datos -->
+                        <div class="tab-pane fade" id="v-pills-types" role="tabpanel" aria-labelledby="v-pills-types-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-list-ol"></i>
+                                    </div>
+                                    <h3 class="mb-0">Tipos de datos en Python</h3>
+                                </div>
+                                
+                                <p>Python tiene varios tipos de datos integrados. Los más comunes son:</p>
+                                
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="data-type-card">
+                                            <div class="data-type-icon">
+                                                <i class="fas fa-hashtag"></i>
+                                            </div>
+                                            <div class="data-type-title">Enteros (int)</div>
+                                            <p>Números enteros, sin parte decimal</p>
+                                            <div class="code-block">
+                                                edad = 25<br>
+                                                cantidad = 1000
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="data-type-card">
+                                            <div class="data-type-icon">
+                                                <i class="fas fa-divide"></i>
+                                            </div>
+                                            <div class="data-type-title">Flotantes (float)</div>
+                                            <p>Números con parte decimal</p>
+                                            <div class="code-block">
+                                                altura = 1.75<br>
+                                                pi = 3.1416
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="data-type-card">
+                                            <div class="data-type-icon">
+                                                <i class="fas fa-font"></i>
+                                            </div>
+                                            <div class="data-type-title">Cadenas (str)</div>
+                                            <p>Secuencias de caracteres (texto)</p>
+                                            <div class="code-block">
+                                                nombre = "Ana"<br>
+                                                mensaje = 'Hola mundo'
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="data-type-card">
+                                            <div class="data-type-icon">
+                                                <i class="fas fa-check-circle"></i>
+                                            </div>
+                                            <div class="data-type-title">Booleanos (bool)</div>
+                                            <p>Valores de verdad: True o False</p>
+                                            <div class="code-block">
+                                                activo = True<br>
+                                                encontrado = False
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="data-type-card">
+                                            <div class="data-type-icon">
+                                                <i class="fas fa-list"></i>
+                                            </div>
+                                            <div class="data-type-title">Listas (list)</div>
+                                            <p>Colecciones ordenadas y modificables</p>
+                                            <div class="code-block">
+                                                edades = [25, 30, 22, 40]<br>
+                                                nombres = ["Ana", "Juan", "María"]
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="data-type-card">
+                                            <div class="data-type-icon">
+                                                <i class="fas fa-database"></i>
+                                            </div>
+                                            <div class="data-type-title">Tuplas (tuple)</div>
+                                            <p>Colecciones ordenadas e inmutables</p>
+                                            <div class="code-block">
+                                                coordenadas = (4.5, 7.2)<br>
+                                                colores = ("rojo", "verde", "azul")
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h4>Conversión entre tipos</h4>
+                                <p>A veces necesitamos convertir un tipo de dato en otro. Python proporciona funciones para esto:</p>
+                                
+                                <table class="type-table">
+                                    <tr>
+                                        <th>Función</th>
+                                        <th>Descripción</th>
+                                        <th>Ejemplo</th>
+                                    </tr>
+                                    <tr>
+                                        <td>int()</td>
+                                        <td>Convierte a entero</td>
+                                        <td>int("25") → 25</td>
+                                    </tr>
+                                    <tr>
+                                        <td>float()</td>
+                                        <td>Convierte a flotante</td>
+                                        <td>float("3.14") → 3.14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>str()</td>
+                                        <td>Convierte a cadena</td>
+                                        <td>str(100) → "100"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>bool()</td>
+                                        <td>Convierte a booleano</td>
+                                        <td>bool(1) → True</td>
+                                    </tr>
+                                    <tr>
+                                        <td>list()</td>
+                                        <td>Convierte a lista</td>
+                                        <td>list((1,2,3)) → [1,2,3]</td>
+                                    </tr>
+                                </table>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        <h4>Ejercicio: Conversión de tipos</h4>
+                                    </div>
+                                    <p>Dado el siguiente código:</p>
+                                    <div class="code-block">
+                                        precio = "19.99"<br>
+                                        cantidad = "5"<br>
+                                        impuesto = 0.15
+                                    </div>
+                                    <p>Calcula el total a pagar (precio * cantidad) y el total con impuesto (total * (1 + impuesto)).</p>
+                                    <p>Muestra los resultados formateados como: "Total: $XX.XX"</p>
+                                    <button class="btn btn-python mt-2">
+                                        <i class="fas fa-lightbulb me-1"></i> Mostrar solución
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejemplos prácticos -->
+                        <div class="tab-pane fade" id="v-pills-examples" role="tabpanel" aria-labelledby="v-pills-examples-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejemplos prácticos con análisis de datos</h3>
+                                </div>
+                                
+                                <h4>Análisis de datos de clientes</h4>
+                                <p>Imagina que tienes datos básicos de clientes y quieres realizar algunos cálculos:</p>
+                                
+                                <div class="code-block">
+                                    <span class="code-comment"># Datos de clientes</span><br>
+                                    nombre_cliente = "Laura Martínez"<br>
+                                    compras_mes_actual = 4<br>
+                                    compras_mes_anterior = 7<br>
+                                    promedio_historico = 5.2<br>
+                                    cliente_activo = True<br><br>
+                                    
+                                    <span class="code-comment"># Calcular variación mensual</span><br>
+                                    variacion = compras_mes_actual - compras_mes_anterior<br>
+                                    variacion_porcentual = (variacion / compras_mes_anterior) * 100<br><br>
+                                    
+                                    <span class="code-comment"># Determinar estado del cliente</span><br>
+                                    if compras_mes_actual > promedio_historico:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;estado = "Sobresaliente"<br>
+                                    elif compras_mes_actual == promedio_historico:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;estado = "Normal"<br>
+                                    else:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;estado = "Debajo del promedio"<br><br>
+                                    
+                                    <span class="code-comment"># Mostrar reporte</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Reporte de cliente:"</span>, nombre_cliente)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Compras este mes:"</span>, compras_mes_actual)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Variación mensual:"</span>, <span class="code-function">round</span>(variacion_porcentual, 1), <span class="code-string">"%"</span>)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Estado:"</span>, estado)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Cliente activo:"</span>, cliente_activo)
+                                </div>
+                                
+                                <p><strong>Salida esperada:</strong></p>
+                                <div class="code-block">
+                                    Reporte de cliente: Laura Martínez<br>
+                                    Compras este mes: 4<br>
+                                    Variación mensual: -42.9 %<br>
+                                    Estado: Debajo del promedio<br>
+                                    Cliente activo: True
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Para instructores:</strong> Este ejemplo muestra cómo diferentes tipos de datos (cadena, entero, flotante, booleano) trabajan juntos en un análisis básico de datos de clientes.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicios -->
+                        <div class="tab-pane fade" id="v-pills-exercises" role="tabpanel" aria-labelledby="v-pills-exercises-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicios del módulo</h3>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-1"></i>
+                                        <h4>Ejercicio 1: Perfil de usuario</h4>
+                                    </div>
+                                    <p>Crea un programa que almacene información de un usuario en variables:</p>
+                                    <ul>
+                                        <li>Nombre completo</li>
+                                        <li>Edad</li>
+                                        <li>Altura (en metros)</li>
+                                        <li>¿Es estudiante? (booleano)</li>
+                                        <li>Hobbies (lista de al menos 3 hobbies)</li>
+                                    </ul>
+                                    <p>Luego muestra la información formateada como:</p>
+                                    <div class="code-block">
+                                        Nombre: [nombre completo]<br>
+                                        Edad: [edad] años<br>
+                                        Altura: [altura] metros<br>
+                                        Estudiante: [Sí/No]<br>
+                                        Hobbies: [hobby1], [hobby2], [hobby3]
+                                    </div>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-2"></i>
+                                        <h4>Ejercicio 2: Calculadora de IMC</h4>
+                                    </div>
+                                    <p>El Índice de Masa Corporal (IMC) se calcula como:</p>
+                                    <p><strong>IMC = peso / (altura^2)</strong></p>
+                                    <p>Crea un programa que:</p>
+                                    <ol>
+                                        <li>Pida al usuario su peso en kg</li>
+                                        <li>Pida su altura en metros</li>
+                                        <li>Calcule el IMC</li>
+                                        <li>Muestre el resultado con dos decimales</li>
+                                    </ol>
+                                    <p><strong>Ejemplo:</strong></p>
+                                    <div class="code-block">
+                                        Ingrese su peso en kg: 70<br>
+                                        Ingrese su altura en metros: 1.75<br>
+                                        Su IMC es: 22.86
+                                    </div>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-3"></i>
+                                        <h4>Ejercicio 3: Conversor de divisas</h4>
+                                    </div>
+                                    <p>Crea un programa que convierta de dólares a euros.</p>
+                                    <p>El programa debe:</p>
+                                    <ul>
+                                        <li>Almacenar el tipo de cambio actual (ej: 1 USD = 0.93 EUR) en una variable</li>
+                                        <li>Pedir al usuario la cantidad de dólares a convertir</li>
+                                        <li>Calcular la cantidad equivalente en euros</li>
+                                        <li>Mostrar el resultado formateado con 2 decimales</li>
+                                    </ul>
+                                    <p><strong>Ejemplo:</strong></p>
+                                    <div class="code-block">
+                                        Ingrese cantidad en USD: 100<br>
+                                        100.00 USD = 93.00 EUR
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-download me-2"></i> Descargar ejercicios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz de comprensión -->
+                        <div class="tab-pane fade" id="v-pills-quiz" role="tabpanel" aria-labelledby="v-pills-quiz-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-question-circle"></i>
+                                    </div>
+                                    <h3 class="mb-0">Quiz de comprensión</h3>
+                                </div>
+                                
+                                <p>Evalúa tu comprensión de los conceptos de este módulo con este breve quiz.</p>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>1. ¿Qué tipo de dato se usaría para almacenar el nombre de una persona?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        int
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        float
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        str
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        bool
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>2. ¿Cuál de los siguientes es un nombre de variable válido en Python?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        1nombre
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        nombre completo
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        nombre_completo
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        nombre-completo
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>3. ¿Qué función se utiliza para convertir un número a cadena?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        int()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        float()
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        str()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        bool()
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>4. ¿Cuál es el resultado de type(3.14) en Python?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        int
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        float
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        str
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        double
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>5. ¿Qué valor booleano se obtiene al evaluar bool(0)?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        True
+                                    </div>
+                                    <div class="quiz-option correct" onclick="selectOption(this)">
+                                        False
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Error
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        None
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i> Enviar respuestas
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicio integrador -->
+                        <div class="tab-pane fade" id="v-pills-integration" role="tabpanel" aria-labelledby="v-pills-integration-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicio integrador del módulo</h3>
+                                </div>
+                                
+                                <div class="integration-exercise">
+                                    <h4>Análisis de datos de productos</h4>
+                                    <p>Como analista de datos en una tienda, tienes la siguiente información sobre productos:</p>
+                                    
+                                    <div class="code-block">
+                                        <span class="code-comment"># Datos de productos</span><br>
+                                        nombres = ["Laptop", "Teléfono", "Tablet", "Monitor"]<br>
+                                        precios = [1200.50, 800.00, 450.75, 300.25]<br>
+                                        cantidades = [15, 30, 25, 40]<br>
+                                        descuentos = [0.10, 0.05, 0.15, 0.20]  <span class="code-comment"># 10%, 5%, 15%, 20%</span>
+                                    </div>
+                                    
+                                    <p><strong>Tu tarea:</strong></p>
+                                    <ol>
+                                        <li>Calcular el valor total de inventario por producto (precio * cantidad)</li>
+                                        <li>Calcular el precio con descuento para cada producto (precio - (precio * descuento))</li>
+                                        <li>Determinar el producto con mayor valor de inventario</li>
+                                        <li>Calcular el valor total de todo el inventario</li>
+                                        <li>Mostrar todos los resultados de forma clara y organizada</li>
+                                    </ol>
+                                    
+                                    <p><strong>Requisitos adicionales:</strong></p>
+                                    <ul>
+                                        <li>Usa nombres de variables descriptivos</li>
+                                        <li>Formatea los números monetarios con 2 decimales</li>
+                                        <li>Muestra los resultados en una tabla o formato fácil de leer</li>
+                                        <li>Agrega comentarios explicativos en tu código</li>
+                                    </ul>
+                                    
+                                    <h5 class="mt-4">Resultado esperado:</h5>
+                                    <div class="code-block">
+                                        === Análisis de Productos ===<br>
+                                        <br>
+                                        Producto: Laptop<br>
+                                        - Precio original: $1200.50<br>
+                                        - Precio con descuento: $1080.45<br>
+                                        - Valor en inventario: $18006.75<br>
+                                        <br>
+                                        Producto: Teléfono<br>
+                                        - Precio original: $800.00<br>
+                                        - Precio con descuento: $760.00<br>
+                                        - Valor en inventario: $24000.00<br>
+                                        <br>
+                                        Producto: Tablet<br>
+                                        - Precio original: $450.75<br>
+                                        - Precio con descuento: $383.14<br>
+                                        - Valor en inventario: $11268.75<br>
+                                        <br>
+                                        Producto: Monitor<br>
+                                        - Precio original: $300.25<br>
+                                        - Precio con descuento: $240.20<br>
+                                        - Valor en inventario: $12010.00<br>
+                                        <br>
+                                        Producto con mayor valor en inventario: Teléfono ($24000.00)<br>
+                                        Valor total del inventario: $65285.50
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-python">
+                                            <i class="fas fa-file-download me-2"></i> Descargar solución
+                                        </button>
+                                        <button class="btn btn-module-nav ms-2">
+                                            <i class="fas fa-video me-2"></i> Ver explicación en video
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-4 text-center bg-light rounded">
+                                    <h4>¡Excelente trabajo en el Módulo 2!</h4>
+                                    <p>Has dominado los fundamentos de variables y tipos de datos.</p>
+                                    <button class="btn btn-python btn-lg mt-2">
+                                        Continuar con el Módulo 3: Estructuras de control <i class="fas fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navegación entre módulos -->
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-module-nav">
+                    <i class="fas fa-arrow-left me-2"></i> Módulo 1: Configuración
+                </button>
+                <button class="btn btn-module-nav">
+                    Módulo 3: Estructuras de control <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para seleccionar opciones en el quiz
+        function selectOption(element) {
+            // Resetear todas las opciones en esta pregunta
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Marcar la opción seleccionada
+            element.classList.add('selected');
+        }
+        
+        // Actualizar barra de progreso al cambiar de sección
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const progressBar = document.querySelector('.progress-bar');
+                let progress = 20;
+                
+                if(this.id === 'v-pills-variables-tab') progress = 35;
+                else if(this.id === 'v-pills-types-tab') progress = 50;
+                else if(this.id === 'v-pills-examples-tab') progress = 65;
+                else if(this.id === 'v-pills-exercises-tab') progress = 80;
+                else if(this.id === 'v-pills-quiz-tab') progress = 90;
+                else if(this.id === 'v-pills-integration-tab') progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressBar.setAttribute('aria-valuenow', progress);
+                progressBar.innerHTML = progress + '%';
+            });
+        });
+        
+        // Animación para los ejercicios
+        document.querySelectorAll('.exercise').forEach(exercise => {
+            exercise.addEventListener('click', function(e) {
+                if(e.target.classList.contains('btn')) {
+                    const solution = this.querySelector('.code-block:last-child');
+                    if(solution) {
+                        solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
