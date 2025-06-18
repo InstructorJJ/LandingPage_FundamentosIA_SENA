@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Estructuras de Control | Fundamentos de Programación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/mod3.css">
+</head>
+<body>
+    <!-- Encabezado del módulo -->
+    <div class="module-header text-center">
+        <div class="container">
+            <div class="module-header-content">
+                <h1 class="display-4 fw-bold">Módulo 3: Estructuras de Control</h1>
+                <p class="lead">Controla el flujo de tu programa con decisiones y bucles</p>
+                <span class="badge badge-module">Semana 3</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de progreso del módulo -->
+    <div class="container">
+        <div class="module-progress">
+            <div style="flex: 1;">
+                <h5 class="mb-2">Progreso del módulo</h5>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-python">
+                    <i class="fas fa-save me-1"></i> Guardar progreso
+                </button>
+            </div>
+        </div>
+
+        <!-- Navegación del módulo -->
+        <div class="module-nav">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-intro-tab" data-bs-toggle="pill" href="#v-pills-intro" role="tab" aria-controls="v-pills-intro" aria-selected="true">
+                            <i class="fas fa-home me-2"></i>Introducción
+                        </a>
+                        <a class="nav-link" id="v-pills-conditional-tab" data-bs-toggle="pill" href="#v-pills-conditional" role="tab" aria-controls="v-pills-conditional" aria-selected="false">
+                            <i class="fas fa-code-branch me-2"></i>Condicionales
+                        </a>
+                        <a class="nav-link" id="v-pills-loops-tab" data-bs-toggle="pill" href="#v-pills-loops" role="tab" aria-controls="v-pills-loops" aria-selected="false">
+                            <i class="fas fa-redo me-2"></i>Bucles
+                        </a>
+                        <a class="nav-link" id="v-pills-examples-tab" data-bs-toggle="pill" href="#v-pills-examples" role="tab" aria-controls="v-pills-examples" aria-selected="false">
+                            <i class="fas fa-chart-line me-2"></i>Ejemplos prácticos
+                        </a>
+                        <a class="nav-link" id="v-pills-exercises-tab" data-bs-toggle="pill" href="#v-pills-exercises" role="tab" aria-controls="v-pills-exercises" aria-selected="false">
+                            <i class="fas fa-dumbbell me-2"></i>Ejercicios
+                        </a>
+                        <a class="nav-link" id="v-pills-quiz-tab" data-bs-toggle="pill" href="#v-pills-quiz" role="tab" aria-controls="v-pills-quiz" aria-selected="false">
+                            <i class="fas fa-question-circle me-2"></i>Quiz de comprensión
+                        </a>
+                        <a class="nav-link" id="v-pills-integration-tab" data-bs-toggle="pill" href="#v-pills-integration" role="tab" aria-controls="v-pills-integration" aria-selected="false">
+                            <i class="fas fa-project-diagram me-2"></i>Ejercicio integrador
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <!-- Introducción -->
+                        <div class="tab-pane fade show active" id="v-pills-intro" role="tabpanel" aria-labelledby="v-pills-intro-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <h3 class="mb-0">Introducción al módulo</h3>
+                                </div>
+                                <p>Las estructuras de control son fundamentales para crear programas dinámicos que puedan tomar decisiones y repetir tareas. En este módulo aprenderás a usar condicionales (if, elif, else) y bucles (for, while) para controlar el flujo de ejecución de tu programa.</p>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Concepto clave para instructores:</strong> Las estructuras de control permiten que los programas sean flexibles y adaptables, esenciales para el análisis de datos donde necesitamos procesar diferentes casos y grandes volúmenes de información.
+                                </div>
+                                
+                                <h4 class="mt-4">Lo que aprenderás en este módulo:</h4>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-code-branch"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Condicionales</h5>
+                                                </div>
+                                                <p class="mb-0">Tomar decisiones con if, elif, else</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-redo"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Bucles for</h5>
+                                                </div>
+                                                <p class="mb-0">Iterar sobre secuencias y colecciones</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-sync-alt"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Bucles while</h5>
+                                                </div>
+                                                <p class="mb-0">Repetir mientras se cumple una condición</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <div class="bg-primary text-white rounded-circle p-2 me-3">
+                                                        <i class="fas fa-random"></i>
+                                                    </div>
+                                                    <h5 class="mb-0">Control de flujo</h5>
+                                                </div>
+                                                <p class="mb-0">break, continue y sentencias anidadas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flow-diagram">
+                                    <div class="flow-step">
+                                        <i class="fas fa-play-circle fa-2x mb-2 text-success"></i>
+                                        <div>Inicio</div>
+                                    </div>
+                                    <div class="flow-arrow">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                    <div class="flow-step">
+                                        <i class="fas fa-question-circle fa-2x mb-2 text-warning"></i>
+                                        <div>Condición</div>
+                                    </div>
+                                    <div class="flow-arrow">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                    <div class="flow-step">
+                                        <i class="fas fa-code fa-2x mb-2 text-primary"></i>
+                                        <div>Acciones</div>
+                                    </div>
+                                    <div class="flow-arrow">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                    <div class="flow-step">
+                                        <i class="fas fa-stop-circle fa-2x mb-2 text-danger"></i>
+                                        <div>Fin</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Condicionales -->
+                        <div class="tab-pane fade" id="v-pills-conditional" role="tabpanel" aria-labelledby="v-pills-conditional-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-code-branch"></i>
+                                    </div>
+                                    <h3 class="mb-0">Estructuras condicionales</h3>
+                                </div>
+                                
+                                <p>Las estructuras condicionales permiten que tu programa tome decisiones basadas en condiciones. En Python usamos <code>if</code>, <code>elif</code> (else if) y <code>else</code>.</p>
+                                
+                                <div class="control-structure-card">
+                                    <div class="control-structure-icon">
+                                        <i class="fas fa-question"></i>
+                                    </div>
+                                    <div class="control-structure-title">Estructura básica if</div>
+                                    <div class="code-block">
+                                        <span class="code-keyword">if</span> condicion:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código a ejecutar si la condición es verdadera</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-structure-card">
+                                    <div class="control-structure-icon">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <div class="control-structure-title">if-else</div>
+                                    <div class="code-block">
+                                        <span class="code-keyword">if</span> condicion:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código si condición es verdadera</span><br>
+                                        <span class="code-keyword">else</span>:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código si condición es falsa</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-structure-card">
+                                    <div class="control-structure-icon">
+                                        <i class="fas fa-sitemap"></i>
+                                    </div>
+                                    <div class="control-structure-title">if-elif-else</div>
+                                    <div class="code-block">
+                                        <span class="code-keyword">if</span> condicion1:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código si condición1 es verdadera</span><br>
+                                        <span class="code-keyword">elif</span> condicion2:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código si condición2 es verdadera</span><br>
+                                        <span class="code-keyword">else</span>:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código si ninguna condición es verdadera</span>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="mt-4">Ejemplo: Clasificación de clientes</h4>
+                                <div class="code-block">
+                                    <span class="code-comment"># Clasificar clientes según compras</span><br>
+                                    compras = 1500  <span class="code-comment"># Monto en dólares</span><br><br>
+                                    
+                                    <span class="code-keyword">if</span> compras > 2000:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;categoria = "Premium"<br>
+                                    <span class="code-keyword">elif</span> compras > 1000:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;categoria = "Oro"<br>
+                                    <span class="code-keyword">elif</span> compras > 500:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;categoria = "Plata"<br>
+                                    <span class="code-keyword">else</span>:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;categoria = "Bronce"<br><br>
+                                    
+                                    <span class="code-function">print</span>(<span class="code-string">"Categoría del cliente:"</span>, categoria)
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        <h4>Ejercicio: Evaluación de productos</h4>
+                                    </div>
+                                    <p>Crea un programa que clasifique productos según su calificación:</p>
+                                    <ul>
+                                        <li>5 estrellas: "Excelente"</li>
+                                        <li>4 estrellas: "Bueno"</li>
+                                        <li>3 estrellas: "Aceptable"</li>
+                                        <li>2 estrellas o menos: "Deficiente"</li>
+                                    </ul>
+                                    <p>El programa debe pedir al usuario la calificación (número entero entre 1 y 5) y mostrar la evaluación correspondiente.</p>
+                                    <button class="btn btn-python mt-2">
+                                        <i class="fas fa-lightbulb me-1"></i> Mostrar solución
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bucles -->
+                        <div class="tab-pane fade" id="v-pills-loops" role="tabpanel" aria-labelledby="v-pills-loops-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-redo"></i>
+                                    </div>
+                                    <h3 class="mb-0">Bucles en Python</h3>
+                                </div>
+                                
+                                <p>Los bucles permiten ejecutar un bloque de código repetidamente. Python tiene dos tipos principales de bucles: <code>for</code> y <code>while</code>.</p>
+                                
+                                <div class="control-structure-card">
+                                    <div class="control-structure-icon">
+                                        <i class="fas fa-list-ol"></i>
+                                    </div>
+                                    <div class="control-structure-title">Bucle for</div>
+                                    <p>Ideal para iterar sobre elementos de una secuencia (lista, tupla, cadena, etc.)</p>
+                                    <div class="code-block">
+                                        <span class="code-keyword">for</span> elemento <span class="code-keyword">in</span> secuencia:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código a ejecutar para cada elemento</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-structure-card">
+                                    <div class="control-structure-icon">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </div>
+                                    <div class="control-structure-title">Bucle while</div>
+                                    <p>Ejecuta un bloque de código mientras una condición sea verdadera</p>
+                                    <div class="code-block">
+                                        <span class="code-keyword">while</span> condicion:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment"># Código a ejecutar mientras condición sea True</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-structure-card">
+                                    <div class="control-structure-icon">
+                                        <i class="fas fa-stop-circle"></i>
+                                    </div>
+                                    <div class="control-structure-title">Control de bucles</div>
+                                    <p><code>break</code> termina el bucle, <code>continue</code> salta a la siguiente iteración</p>
+                                    <div class="code-block">
+                                        <span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(10):<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> i == 3:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">continue</span>  <span class="code-comment"># Salta esta iteración</span><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> i == 7:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">break</span>    <span class="code-comment"># Termina el bucle</span><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(i)
+                                    </div>
+                                </div>
+                                
+                                <h4 class="mt-4">Ejemplo: Análisis de ventas diarias</h4>
+                                <div class="code-block">
+                                    <span class="code-comment"># Calcular ventas semanales</span><br>
+                                    ventas_diarias = [1200, 1500, 900, 1800, 2100, 800, 1100]<br>
+                                    total_semanal = 0<br>
+                                    dia = 1<br><br>
+                                    
+                                    <span class="code-comment"># Usando for</span><br>
+                                    <span class="code-keyword">for</span> venta <span class="code-keyword">in</span> ventas_diarias:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;total_semanal += venta<br><br>
+                                    
+                                    <span class="code-comment"># Usando while</span><br>
+                                    total_semanal = 0<br>
+                                    contador = 0<br>
+                                    <span class="code-keyword">while</span> contador < len(ventas_diarias):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;total_semanal += ventas_diarias[contador]<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;contador += 1<br><br>
+                                    
+                                    <span class="code-function">print</span>(<span class="code-string">"Ventas totales de la semana: $"</span>, total_semanal)
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        <h4>Ejercicio: Búsqueda en lista</h4>
+                                    </div>
+                                    <p>Dada una lista de números, crea un programa que:</p>
+                                    <ol>
+                                        <li>Pida al usuario un número a buscar</li>
+                                        <li>Recorra la lista usando un bucle</li>
+                                        <li>Indique si el número está en la lista</li>
+                                        <li>Si está, muestre su posición (índice)</li>
+                                    </ol>
+                                    <div class="code-block">
+                                        numeros = [23, 45, 67, 12, 89, 34, 56]
+                                    </div>
+                                    <button class="btn btn-python mt-2">
+                                        <i class="fas fa-lightbulb me-1"></i> Mostrar solución
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejemplos prácticos -->
+                        <div class="tab-pane fade" id="v-pills-examples" role="tabpanel" aria-labelledby="v-pills-examples-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejemplos prácticos con análisis de datos</h3>
+                                </div>
+                                
+                                <h4>Análisis de ventas por categoría</h4>
+                                <p>Supongamos que tenemos datos de ventas por categoría de producto y queremos:</p>
+                                <ul>
+                                    <li>Calcular el total de ventas por categoría</li>
+                                    <li>Identificar la categoría con mayores ventas</li>
+                                    <li>Calcular el porcentaje que representa cada categoría</li>
+                                </ul>
+                                
+                                <div class="code-block">
+                                    <span class="code-comment"># Datos de ventas por categoría</span><br>
+                                    categorias = ["Electrónicos", "Ropa", "Hogar", "Alimentos"]<br>
+                                    ventas = [12000, 8500, 7600, 9200]<br><br>
+                                    
+                                    <span class="code-comment"># Calcular total de ventas</span><br>
+                                    total_ventas = sum(ventas)<br><br>
+                                    
+                                    <span class="code-comment"># Encontrar categoría con mayores ventas</span><br>
+                                    max_ventas = 0<br>
+                                    categoria_max = ""<br>
+                                    <span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(len(categorias)):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">if</span> ventas[i] > max_ventas:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_ventas = ventas[i]<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categoria_max = categorias[i]<br><br>
+                                    
+                                    <span class="code-comment"># Calcular porcentajes</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"=== Reporte de Ventas ==="</span>)<br>
+                                    <span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(len(categorias)):<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;porcentaje = (ventas[i] / total_ventas) * 100<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">print</span>(f"{categorias[i]}: ${ventas[i]} ({porcentaje:.1f}%)")<br><br>
+                                    
+                                    <span class="code-function">print</span>(<span class="code-string">f"\nCategoría con mayores ventas: {categoria_max} (${max_ventas})"</span>)
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Para instructores:</strong> Este ejemplo muestra cómo combinar bucles y condicionales para realizar análisis básicos de datos. Es un patrón común en el análisis de datos donde necesitamos procesar colecciones de información.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicios -->
+                        <div class="tab-pane fade" id="v-pills-exercises" role="tabpanel" aria-labelledby="v-pills-exercises-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicios del módulo</h3>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-1"></i>
+                                        <h4>Ejercicio 1: Calculadora de impuestos</h4>
+                                    </div>
+                                    <p>Crea un programa que calcule el impuesto según el ingreso anual:</p>
+                                    <ul>
+                                        <li>Hasta $10,000: 5%</li>
+                                        <li>$10,001 - $50,000: 15%</li>
+                                        <li>$50,001 - $100,000: 20%</li>
+                                        <li>Más de $100,000: 30%</li>
+                                    </ul>
+                                    <p>El programa debe:</p>
+                                    <ol>
+                                        <li>Pedir al usuario su ingreso anual</li>
+                                        <li>Calcular el impuesto a pagar</li>
+                                        <li>Mostrar el resultado</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-2"></i>
+                                        <h4>Ejercicio 2: Suma de números pares</h4>
+                                    </div>
+                                    <p>Crea un programa que:</p>
+                                    <ol>
+                                        <li>Pida al usuario un número entero positivo (n)</li>
+                                        <li>Calcule la suma de todos los números pares desde 1 hasta n</li>
+                                        <li>Muestre el resultado</li>
+                                    </ol>
+                                    <p><strong>Ejemplo:</strong> Si n=10, resultado=30 (2+4+6+8+10)</p>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-3"></i>
+                                        <h4>Ejercicio 3: Análisis de temperaturas</h4>
+                                    </div>
+                                    <p>Dada una lista de temperaturas diarias:</p>
+                                    <div class="code-block">
+                                        temperaturas = [22.5, 19.8, 25.3, 18.9, 23.4, 27.1, 21.0]
+                                    </div>
+                                    <p>El programa debe:</p>
+                                    <ul>
+                                        <li>Calcular la temperatura promedio</li>
+                                        <li>Encontrar la temperatura máxima y mínima</li>
+                                        <li>Contar cuántos días estuvieron sobre el promedio</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-download me-2"></i> Realizar ejercicios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz de comprensión -->
+                        <div class="tab-pane fade" id="v-pills-quiz" role="tabpanel" aria-labelledby="v-pills-quiz-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-question-circle"></i>
+                                    </div>
+                                    <h3 class="mb-0">Quiz de comprensión</h3>
+                                </div>
+                                
+                                <p>Evalúa tu comprensión de las estructuras de control con este breve quiz.</p>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>1. ¿Qué estructura se utiliza para ejecutar un bloque de código solo si una condición es verdadera?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        for
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        if
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        while
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        else
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>2. ¿Cuál es la función de la palabra clave 'elif' en Python?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Terminar un bucle
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Iniciar un nuevo bloque de código
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Evaluar una nueva condición si la anterior fue falsa
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Saltar a la siguiente iteración de un bucle
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>3. ¿Qué bucle es más adecuado cuando no sabemos cuántas iteraciones necesitaremos?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        for
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        while
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        ambos son iguales
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        ninguno
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>4. ¿Qué hace la palabra clave 'break' en un bucle?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Pausa el bucle temporalmente
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Salta a la siguiente iteración
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Termina el bucle inmediatamente
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Reinicia el bucle
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>5. ¿Cuántas veces se ejecutará el siguiente bucle?<br>i = 0<br>while i < 5:<br>&nbsp;&nbsp;print(i)<br>&nbsp;&nbsp;i += 1</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        4 veces
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        5 veces
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        6 veces
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Infinitas veces
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i> Enviar Respuestas al Instructor
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicio integrador -->
+                        <div class="tab-pane fade" id="v-pills-integration" role="tabpanel" aria-labelledby="v-pills-integration-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicio integrador del módulo</h3>
+                                </div>
+                                
+                                <div class="integration-exercise">
+                                    <h4>Análisis de resultados de encuestas</h4>
+                                    <p>Como analista de datos, tienes los resultados de una encuesta de satisfacción de clientes:</p>
+                                    
+                                    <div class="code-block">
+                                        <span class="code-comment"># Calificaciones de satisfacción (1-5)</span><br>
+                                        calificaciones = [4, 5, 3, 4, 2, 5, 4, 3, 5, 4, 1, 5, 4, 3, 2, 4, 5, 3, 4, 5]
+                                    </div>
+                                    
+                                    <p><strong>Tu tarea:</strong></p>
+                                    <ol>
+                                        <li>Calcular el promedio de calificaciones</li>
+                                        <li>Contar el número de cada calificación (1, 2, 3, 4, 5)</li>
+                                        <li>Determinar el porcentaje de cada calificación</li>
+                                        <li>Identificar la calificación más común</li>
+                                        <li>Clasificar la satisfacción general:
+                                            <ul>
+                                                <li>Promedio >= 4.5: "Excelente"</li>
+                                                <li>Promedio >= 4.0: "Muy buena"</li>
+                                                <li>Promedio >= 3.0: "Buena"</li>
+                                                <li>Promedio < 3.0: "Necesita mejora"</li>
+                                            </ul>
+                                        </li>
+                                        <li>Mostrar todos los resultados de forma clara</li>
+                                    </ol>
+                                    
+                                    <p><strong>Requisitos adicionales:</strong></p>
+                                    <ul>
+                                        <li>Usa estructuras de control (if, for) apropiadas</li>
+                                        <li>Formatea los porcentajes con 1 decimal</li>
+                                        <li>Muestra los resultados en un formato organizado</li>
+                                        <li>Agrega comentarios explicativos en tu código</li>
+                                    </ul>
+                                    
+                                    <h5 class="mt-4">Resultado esperado:</h5>
+                                    <div class="code-block">
+                                        === Resultados de la Encuesta ===<br>
+                                        <br>
+                                        Total de respuestas: 20<br>
+                                        Promedio de satisfacción: 3.85<br>
+                                        <br>
+                                        Distribución de calificaciones:<br>
+                                        - 1 estrella: 1 (5.0%)<br>
+                                        - 2 estrellas: 2 (10.0%)<br>
+                                        - 3 estrellas: 4 (20.0%)<br>
+                                        - 4 estrellas: 7 (35.0%)<br>
+                                        - 5 estrellas: 6 (30.0%)<br>
+                                        <br>
+                                        Calificación más común: 4 estrellas<br>
+                                        Satisfacción general: Muy buena
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-python">
+                                            <i class="fas fa-file-download me-2"></i> Descargar solución
+                                        </button>
+                                        <button class="btn btn-module-nav ms-2">
+                                            <i class="fas fa-video me-2"></i> Ver explicación en video
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-4 text-center bg-light rounded">
+                                    <h4>¡Dominaste las estructuras de control!</h4>
+                                    <p>Ahora puedes crear programas que toman decisiones y manejan tareas repetitivas.</p>
+                                    <button class="btn btn-python btn-lg mt-2">
+                                        Continuar con el Módulo 4: NumPy para cálculos eficientes <i class="fas fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navegación entre módulos -->
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-module-nav">
+                    <a href="Modulo_2.html">
+                        <i class="fas fa-arrow-left me-2"></i> Módulo 2: Variables
+                    </a>
+                </button>
+                <button class="btn btn-module-nav">
+                    Módulo 4: NumPy <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para seleccionar opciones en el quiz
+        function selectOption(element) {
+            // Resetear todas las opciones en esta pregunta
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Marcar la opción seleccionada
+            element.classList.add('selected');
+        }
+        
+        // Actualizar barra de progreso al cambiar de sección
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const progressBar = document.querySelector('.progress-bar');
+                let progress = 20;
+                
+                if(this.id === 'v-pills-conditional-tab') progress = 35;
+                else if(this.id === 'v-pills-loops-tab') progress = 50;
+                else if(this.id === 'v-pills-examples-tab') progress = 65;
+                else if(this.id === 'v-pills-exercises-tab') progress = 80;
+                else if(this.id === 'v-pills-quiz-tab') progress = 90;
+                else if(this.id === 'v-pills-integration-tab') progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressBar.setAttribute('aria-valuenow', progress);
+                progressBar.innerHTML = progress + '%';
+            });
+        });
+        
+        // Animación para los ejercicios
+        document.querySelectorAll('.exercise').forEach(exercise => {
+            exercise.addEventListener('click', function(e) {
+                if(e.target.classList.contains('btn')) {
+                    const solution = this.querySelector('.code-block:last-child');
+                    if(solution) {
+                        solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
