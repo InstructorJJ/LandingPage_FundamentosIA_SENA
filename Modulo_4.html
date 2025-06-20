@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: NumPy para Cálculos Eficientes | Fundamentos de Programación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/mod4.css">
+</head>
+<body>
+    <!-- Encabezado del módulo -->
+    <div class="module-header text-center">
+        <div class="container">
+            <div class="module-header-content">
+                <h1 class="display-4 fw-bold">Módulo 4: NumPy para Cálculos Eficientes</h1>
+                <p class="lead">Realiza cálculos numéricos eficientes con arrays</p>
+                <span class="badge badge-module">Semana 4</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de progreso del módulo -->
+    <div class="container">
+        <div class="module-progress">
+            <div style="flex: 1;">
+                <h5 class="mb-2">Progreso del módulo</h5>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-python">
+                    <i class="fas fa-save me-1"></i> Guardar progreso
+                </button>
+            </div>
+        </div>
+
+        <!-- Navegación del módulo -->
+        <div class="module-nav">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-intro-tab" data-bs-toggle="pill" href="#v-pills-intro" role="tab" aria-controls="v-pills-intro" aria-selected="true">
+                            <i class="fas fa-home me-2"></i>Introducción
+                        </a>
+                        <a class="nav-link" id="v-pills-arrays-tab" data-bs-toggle="pill" href="#v-pills-arrays" role="tab" aria-controls="v-pills-arrays" aria-selected="false">
+                            <i class="fas fa-th me-2"></i>Arrays NumPy
+                        </a>
+                        <a class="nav-link" id="v-pills-operations-tab" data-bs-toggle="pill" href="#v-pills-operations" role="tab" aria-controls="v-pills-operations" aria-selected="false">
+                            <i class="fas fa-calculator me-2"></i>Operaciones
+                        </a>
+                        <a class="nav-link" id="v-pills-indexing-tab" data-bs-toggle="pill" href="#v-pills-indexing" role="tab" aria-controls="v-pills-indexing" aria-selected="false">
+                            <i class="fas fa-search me-2"></i>Indexación
+                        </a>
+                        <a class="nav-link" id="v-pills-examples-tab" data-bs-toggle="pill" href="#v-pills-examples" role="tab" aria-controls="v-pills-examples" aria-selected="false">
+                            <i class="fas fa-chart-line me-2"></i>Ejemplos prácticos
+                        </a>
+                        <a class="nav-link" id="v-pills-exercises-tab" data-bs-toggle="pill" href="#v-pills-exercises" role="tab" aria-controls="v-pills-exercises" aria-selected="false">
+                            <i class="fas fa-dumbbell me-2"></i>Ejercicios
+                        </a>
+                        <a class="nav-link" id="v-pills-quiz-tab" data-bs-toggle="pill" href="#v-pills-quiz" role="tab" aria-controls="v-pills-quiz" aria-selected="false">
+                            <i class="fas fa-question-circle me-2"></i>Quiz de comprensión
+                        </a>
+                        <a class="nav-link" id="v-pills-integration-tab" data-bs-toggle="pill" href="#v-pills-integration" role="tab" aria-controls="v-pills-integration" aria-selected="false">
+                            <i class="fas fa-project-diagram me-2"></i>Ejercicio integrador
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <!-- Introducción -->
+                        <div class="tab-pane fade show active" id="v-pills-intro" role="tabpanel" aria-labelledby="v-pills-intro-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <h3 class="mb-0">Introducción a NumPy</h3>
+                                </div>
+                                <p>NumPy es la biblioteca fundamental para computación científica en Python. Proporciona objetos de array multidimensionales, funciones matemáticas sofisticadas y herramientas para integrar código C/C++ y Fortran.</p>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Concepto clave para instructores:</strong> NumPy es esencial para análisis de datos porque permite operaciones vectorizadas que son mucho más rápidas que los bucles tradicionales en Python, especialmente con grandes volúmenes de datos.
+                                </div>
+                                
+                                <h4 class="mt-4">¿Por qué NumPy?</h4>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-bolt"></i>
+                                            </div>
+                                            <div class="feature-title">Rendimiento</div>
+                                            <p>Operaciones vectorizadas que son 10-100x más rápidas que los bucles en Python</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-memory"></i>
+                                            </div>
+                                            <div class="feature-title">Eficiencia de memoria</div>
+                                            <p>Los arrays de NumPy son más compactos que las listas de Python</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-cogs"></i>
+                                            </div>
+                                            <div class="feature-title">Funciones avanzadas</div>
+                                            <p>Operaciones matemáticas, álgebra lineal, transformadas de Fourier, etc.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="feature-card">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-project-diagram"></i>
+                                            </div>
+                                            <div class="feature-title">Base para otras bibliotecas</div>
+                                            <p>Pandas, SciPy, Scikit-learn y Matplotlib se construyen sobre NumPy</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <div class="step-circle">1</div>
+                                    <div class="step-content">
+                                        <h5>Instalación de NumPy</h5>
+                                        <p>Instala NumPy usando pip en tu terminal:</p>
+                                        <div class="code-block">
+                                            pip install numpy
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="step">
+                                    <div class="step-circle">2</div>
+                                    <div class="step-content">
+                                        <h5>Importar NumPy</h5>
+                                        <p>La convención estándar es importar NumPy como np:</p>
+                                        <div class="code-block">
+                                            <span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrays NumPy -->
+                        <div class="tab-pane fade" id="v-pills-arrays" role="tabpanel" aria-labelledby="v-pills-arrays-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-th"></i>
+                                    </div>
+                                    <h3 class="mb-0">Creación de Arrays NumPy</h3>
+                                </div>
+                                
+                                <p>Los arrays son la estructura de datos central en NumPy. Son similares a las listas de Python pero mucho más eficientes.</p>
+                                
+                                <h4>Crear arrays desde listas</h4>
+                                <div class="code-block">
+                                    <span class="code-comment"># Array 1D</span><br>
+                                    arr1d = np.array([1, 2, 3, 4, 5])<br>
+                                    <span class="code-function">print</span>(arr1d)<br>
+                                    <span class="code-comment"># Output: [1 2 3 4 5]</span><br><br>
+                                    
+                                    <span class="code-comment"># Array 2D</span><br>
+                                    arr2d = np.array([[1, 2, 3], [4, 5, 6]])<br>
+                                    <span class="code-function">print</span>(arr2d)<br>
+                                    <span class="code-comment"># Output: [[1 2 3]<br>#         [4 5 6]]</span>
+                                </div>
+                                
+                                <h4 class="mt-4">Funciones para crear arrays</h4>
+                                <table class="numpy-table">
+                                    <tr>
+                                        <th>Función</th>
+                                        <th>Descripción</th>
+                                        <th>Ejemplo</th>
+                                    </tr>
+                                    <tr>
+                                        <td>np.zeros()</td>
+                                        <td>Crea un array lleno de ceros</td>
+                                        <td>np.zeros((3, 3))</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.ones()</td>
+                                        <td>Crea un array lleno de unos</td>
+                                        <td>np.ones((2, 4))</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.arange()</td>
+                                        <td>Crea un array con valores espaciados</td>
+                                        <td>np.arange(0, 10, 2)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.linspace()</td>
+                                        <td>Crea un array con valores espaciados uniformemente</td>
+                                        <td>np.linspace(0, 1, 5)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.random.rand()</td>
+                                        <td>Crea un array con valores aleatorios</td>
+                                        <td>np.random.rand(3, 3)</td>
+                                    </tr>
+                                </table>
+                                
+                                <h4 class="mt-4">Atributos de los arrays</h4>
+                                <div class="code-block">
+                                    arr = np.array([[1, 2, 3], [4, 5, 6]])<br><br>
+                                    
+                                    <span class="code-function">print</span>(<span class="code-string">"Dimensiones:"</span>, arr.ndim)       <span class="code-comment"># 2</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Forma:"</span>, arr.shape)         <span class="code-comment"># (2, 3)</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Tamaño:"</span>, arr.size)         <span class="code-comment"># 6</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Tipo de dato:"</span>, arr.dtype)   <span class="code-comment"># int64</span>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        <h4>Ejercicio: Creación de arrays</h4>
+                                    </div>
+                                    <p>Crea los siguientes arrays usando funciones de NumPy:</p>
+                                    <ol>
+                                        <li>Un array 3x3 lleno de unos</li>
+                                        <li>Un array 1D con números del 5 al 15</li>
+                                        <li>Un array 2x4 con valores aleatorios entre 0 y 1</li>
+                                        <li>Un array con valores de 0 a 10 en pasos de 0.5</li>
+                                    </ol>
+                                    <button class="btn btn-python mt-2">
+                                        <i class="fas fa-lightbulb me-1"></i> Mostrar solución
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Operaciones -->
+                        <div class="tab-pane fade" id="v-pills-operations" role="tabpanel" aria-labelledby="v-pills-operations-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <h3 class="mb-0">Operaciones con Arrays</h3>
+                                </div>
+                                
+                                <p>La verdadera potencia de NumPy está en las operaciones vectorizadas que se aplican a todo el array sin necesidad de bucles.</p>
+                                
+                                <h4>Operaciones matemáticas</h4>
+                                <div class="code-block">
+                                    a = np.array([1, 2, 3])<br>
+                                    b = np.array([4, 5, 6])<br><br>
+                                    
+                                    <span class="code-comment"># Suma elemento por elemento</span><br>
+                                    suma = a + b  <span class="code-comment"># [5, 7, 9]</span><br><br>
+                                    
+                                    <span class="code-comment"># Multiplicación</span><br>
+                                    multiplicacion = a * b  <span class="code-comment"># [4, 10, 18]</span><br><br>
+                                    
+                                    <span class="code-comment"># Funciones universales (ufunc)</span><br>
+                                    raiz = np.sqrt(a)  <span class="code-comment"># [1, 1.414, 1.732]</span><br>
+                                    exponencial = np.exp(b) <span class="code-comment"># [54.6, 148.4, 403.4]</span>
+                                </div>
+                                
+                                <h4 class="mt-4">Operaciones de agregación</h4>
+                                <table class="numpy-table">
+                                    <tr>
+                                        <th>Función</th>
+                                        <th>Descripción</th>
+                                        <th>Ejemplo</th>
+                                    </tr>
+                                    <tr>
+                                        <td>np.sum()</td>
+                                        <td>Suma de elementos</td>
+                                        <td>np.sum(arr)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.mean()</td>
+                                        <td>Promedio</td>
+                                        <td>np.mean(arr)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.min()</td>
+                                        <td>Valor mínimo</td>
+                                        <td>np.min(arr)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.max()</td>
+                                        <td>Valor máximo</td>
+                                        <td>np.max(arr)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>np.std()</td>
+                                        <td>Desviación estándar</td>
+                                        <td>np.std(arr)</td>
+                                    </tr>
+                                </table>
+                                
+                                <h4 class="mt-4">Álgebra lineal</h4>
+                                <div class="code-block">
+                                    <span class="code-comment"># Producto punto</span><br>
+                                    a = np.array([1, 2, 3])<br>
+                                    b = np.array([4, 5, 6])<br>
+                                    producto_punto = np.dot(a, b)  <span class="code-comment"># 32</span><br><br>
+                                    
+                                    <span class="code-comment"># Multiplicación de matrices</span><br>
+                                    mat1 = np.array([[1, 2], [3, 4]])<br>
+                                    mat2 = np.array([[5, 6], [7, 8]])<br>
+                                    producto_matricial = np.matmul(mat1, mat2)<br>
+                                    <span class="code-comment"># [[19, 22], [43, 50]]</span>
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Operaciones vectorizadas:</strong> En NumPy, las operaciones se aplican elemento por elemento automáticamente, lo que hace el código más conciso y eficiente.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Indexación -->
+                        <div class="tab-pane fade" id="v-pills-indexing" role="tabpanel" aria-labelledby="v-pills-indexing-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <h3 class="mb-0">Indexación y Slicing</h3>
+                                </div>
+                                
+                                <p>Acceder y modificar elementos de arrays es similar a las listas de Python, pero con capacidades adicionales.</p>
+                                
+                                <h4>Indexación en arrays 1D</h4>
+                                <div class="code-block">
+                                    arr = np.array([10, 20, 30, 40, 50])<br><br>
+                                    
+                                    <span class="code-comment"># Elemento en posición 0</span><br>
+                                    print(arr[0])  <span class="code-comment"># 10</span><br><br>
+                                    
+                                    <span class="code-comment"># Slicing: elementos del 1 al 3</span><br>
+                                    print(arr[1:4])  <span class="code-comment"># [20, 30, 40]</span><br><br>
+                                    
+                                    <span class="code-comment"># Con paso</span><br>
+                                    print(arr[0:5:2])  <span class="code-comment"># [10, 30, 50]</span>
+                                </div>
+                                
+                                <h4 class="mt-4">Indexación en arrays 2D</h4>
+                                <div class="code-block">
+                                    arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])<br><br>
+                                    
+                                    <span class="code-comment"># Elemento en fila 1, columna 2</span><br>
+                                    print(arr[1, 2])  <span class="code-comment"># 6</span><br><br>
+                                    
+                                    <span class="code-comment"># Toda la fila 0</span><br>
+                                    print(arr[0, :])  <span class="code-comment"># [1, 2, 3]</span><br><br>
+                                    
+                                    <span class="code-comment"># Columna 1 de todas las filas</span><br>
+                                    print(arr[:, 1])  <span class="code-comment"># [2, 5, 8]</span>
+                                </div>
+                                
+                                <h4 class="mt-4">Indexación booleana</h4>
+                                <p>Una de las características más poderosas de NumPy:</p>
+                                <div class="code-block">
+                                    arr = np.array([1, 2, 3, 4, 5, 6])<br><br>
+                                    
+                                    <span class="code-comment"># Crear un array booleano</span><br>
+                                    filtro = arr > 3<br>
+                                    <span class="code-comment"># [False, False, False, True, True, True]</span><br><br>
+                                    
+                                    <span class="code-comment"># Filtrar usando el array booleano</span><br>
+                                    print(arr[filtro])  <span class="code-comment"># [4, 5, 6]</span><br><br>
+                                    
+                                    <span class="code-comment"># En una sola línea</span><br>
+                                    print(arr[arr % 2 == 0])  <span class="code-comment"># [2, 4, 6]</span>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        <h4>Ejercicio: Filtrado de datos</h4>
+                                    </div>
+                                    <p>Dado el siguiente array de temperaturas:</p>
+                                    <div class="code-block">
+                                        temperaturas = np.array([22.5, 19.8, 25.3, 18.9, 23.4, 27.1, 21.0])
+                                    </div>
+                                    <p>Crea un nuevo array que contenga solo las temperaturas mayores a 22°C.</p>
+                                    <button class="btn btn-python mt-2">
+                                        <i class="fas fa-lightbulb me-1"></i> Mostrar solución
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejemplos prácticos -->
+                        <div class="tab-pane fade" id="v-pills-examples" role="tabpanel" aria-labelledby="v-pills-examples-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejemplos prácticos con análisis de datos</h3>
+                                </div>
+                                
+                                <h4>Análisis de ventas mensuales</h4>
+                                <p>Supongamos que tenemos datos de ventas mensuales durante 3 años:</p>
+                                
+                                <div class="code-block">
+                                    <span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np<br><br>
+                                    
+                                    <span class="code-comment"># Datos de ventas: 3 años x 12 meses</span><br>
+                                    ventas = np.array([<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;[120, 150, 130, 145, 160, 190, 210, 200, 180, 170, 160, 150],  <span class="code-comment"># Año 1</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;[125, 155, 140, 150, 165, 195, 220, 210, 185, 175, 165, 155],  <span class="code-comment"># Año 2</span><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;[130, 160, 145, 160, 170, 200, 230, 220, 190, 180, 170, 160]   <span class="code-comment"># Año 3</span><br>
+                                    ])<br><br>
+                                    
+                                    <span class="code-comment"># Promedio de ventas por mes</span><br>
+                                    promedio_mensual = np.mean(ventas, axis=0)<br><br>
+                                    
+                                    <span class="code-comment"># Total de ventas por año</span><br>
+                                    total_anual = np.sum(ventas, axis=1)<br><br>
+                                    
+                                    <span class="code-comment"># Mes con mayores ventas promedio</span><br>
+                                    mes_max = np.argmax(promedio_mensual) + 1<br><br>
+                                    
+                                    <span class="code-comment"># Crecimiento anual</span><br>
+                                    crecimiento = (total_anual[1:] - total_anual[:-1]) / total_anual[:-1] * 100<br><br>
+                                    
+                                    <span class="code-comment"># Mostrar resultados</span><br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Promedio mensual:"</span>, promedio_mensual)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Total anual:"</span>, total_anual)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Mes con mayores ventas:"</span>, mes_max)<br>
+                                    <span class="code-function">print</span>(<span class="code-string">"Crecimiento anual:"</span>, crecimiento)
+                                </div>
+                                
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Para instructores:</strong> Este ejemplo muestra cómo NumPy permite realizar análisis complejos con pocas líneas de código. Las operaciones vectorizadas reemplazan bucles complejos y mejoran el rendimiento.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicios -->
+                        <div class="tab-pane fade" id="v-pills-exercises" role="tabpanel" aria-labelledby="v-pills-exercises-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicios del módulo</h3>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-1"></i>
+                                        <h4>Ejercicio 1: Estadísticas básicas</h4>
+                                    </div>
+                                    <p>Dado el siguiente array de calificaciones:</p>
+                                    <div class="code-block">
+                                        calificaciones = np.array([85, 92, 78, 90, 88, 76, 95, 89])
+                                    </div>
+                                    <p>Calcula:</p>
+                                    <ol>
+                                        <li>El promedio de calificaciones</li>
+                                        <li>La calificación más alta</li>
+                                        <li>La calificación más baja</li>
+                                        <li>La desviación estándar</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-2"></i>
+                                        <h4>Ejercicio 2: Normalización de datos</h4>
+                                    </div>
+                                    <p>Normalizar un array significa escalar los valores al rango [0, 1]. La fórmula es:</p>
+                                    <p><strong>x_normalized = (x - min) / (max - min)</strong></p>
+                                    <p>Dado el array:</p>
+                                    <div class="code-block">
+                                        datos = np.array([15, 28, 35, 42, 50])
+                                    </div>
+                                    <p>Crea una función que normalice cualquier array 1D.</p>
+                                </div>
+                                
+                                <div class="exercise">
+                                    <div class="exercise-title">
+                                        <i class="fas fa-3"></i>
+                                        <h4>Ejercicio 3: Multiplicación de matrices</h4>
+                                    </div>
+                                    <p>Dadas las matrices:</p>
+                                    <div class="code-block">
+                                        A = np.array([[1, 2], [3, 4]])<br>
+                                        B = np.array([[5, 6], [7, 8]])
+                                    </div>
+                                    <p>Calcula:</p>
+                                    <ol>
+                                        <li>El producto matricial de A y B</li>
+                                        <li>El producto elemento por elemento</li>
+                                        <li>La traza de la matriz resultante (suma de la diagonal)</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-download me-2"></i> Desarrollar ejercicios
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quiz de comprensión -->
+                        <div class="tab-pane fade" id="v-pills-quiz" role="tabpanel" aria-labelledby="v-pills-quiz-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-question-circle"></i>
+                                    </div>
+                                    <h3 class="mb-0">Quiz de comprensión</h3>
+                                </div>
+                                
+                                <p>Evalúa tu comprensión de NumPy con este breve quiz.</p>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>1. ¿Qué función de NumPy se utiliza para crear un array lleno de ceros?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.empty()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.array()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.zeros()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.null()
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>2. ¿Cómo se calcula el promedio de un array NumPy llamado 'data'?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        data.avg()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.mean(data)
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        data.mean()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        avg(data)
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>3. ¿Qué hace el siguiente código?<br>arr[arr > 5]</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Crea un array booleano
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Filtra elementos mayores a 5
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Reemplaza valores mayores a 5
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        Cuenta elementos mayores a 5
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>4. ¿Qué método se utiliza para la multiplicación de matrices?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.multiply()
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.dot() para vectores
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.matmul() o @
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        np.cross()
+                                    </div>
+                                </div>
+                                
+                                <div class="quiz-question mb-4">
+                                    <h5>5. ¿Qué devuelve arr.shape para un array 2D de 3 filas y 4 columnas?</h5>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        (3, 4)
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        [3, 4]
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        (3, 4)
+                                    </div>
+                                    <div class="quiz-option" onclick="selectOption(this)">
+                                        12
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-python btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i> Enviar Documento Quiz por Whatsapp
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Ejercicio integrador -->
+                        <div class="tab-pane fade" id="v-pills-integration" role="tabpanel" aria-labelledby="v-pills-integration-tab">
+                            <div class="content-section">
+                                <div class="section-title">
+                                    <div class="section-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </div>
+                                    <h3 class="mb-0">Ejercicio integrador del módulo</h3>
+                                </div>
+                                
+                                <div class="integration-exercise">
+                                    <h4>Análisis de datos climáticos</h4>
+                                    <p>Como científico de datos, tienes datos de temperatura de varias ciudades durante una semana:</p>
+                                    
+                                    <div class="code-block">
+                                        <span class="code-comment"># Temperaturas diarias (en °C) para 4 ciudades durante 7 días</span><br>
+                                        temperaturas = np.array([<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;[22.5, 19.8, 25.3, 18.9, 23.4, 27.1, 21.0],  <span class="code-comment"># Ciudad A</span><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;[18.2, 17.5, 19.8, 16.3, 20.1, 22.5, 17.8],  <span class="code-comment"># Ciudad B</span><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;[25.8, 24.3, 27.5, 23.7, 26.2, 29.0, 24.5],  <span class="code-comment"># Ciudad C</span><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;[20.1, 19.2, 21.5, 18.5, 22.0, 24.3, 19.7]   <span class="code-comment"># Ciudad D</span><br>
+                                        ])
+                                    </div>
+                                    
+                                    <p><strong>Tu tarea:</strong></p>
+                                    <ol>
+                                        <li>Calcular la temperatura promedio para cada ciudad</li>
+                                        <li>Encontrar la temperatura máxima y mínima de toda la semana</li>
+                                        <li>Determinar para cada ciudad cuántos días superaron los 25°C</li>
+                                        <li>Calcular la desviación estándar de temperaturas para cada ciudad</li>
+                                        <li>Identificar qué ciudad tuvo la mayor variación de temperatura (diferencia entre max y min)</li>
+                                        <li>Mostrar todos los resultados de forma clara</li>
+                                    </ol>
+                                    
+                                    <p><strong>Requisitos adicionales:</strong></p>
+                                    <ul>
+                                        <li>Usa operaciones vectorizadas de NumPy</li>
+                                        <li>Evita el uso de bucles Python siempre que sea posible</li>
+                                        <li>Formatea los números para mostrar 1 decimal donde sea necesario</li>
+                                        <li>Agrega comentarios explicativos en tu código</li>
+                                    </ul>
+                                    
+                                    <h5 class="mt-4">Resultado esperado:</h5>
+                                    <div class="code-block">
+                                        === Análisis de Temperaturas ===<br>
+                                        <br>
+                                        Promedio por ciudad:<br>
+                                        - Ciudad A: 22.6°C<br>
+                                        - Ciudad B: 18.9°C<br>
+                                        - Ciudad C: 25.7°C<br>
+                                        - Ciudad D: 20.6°C<br>
+                                        <br>
+                                        Temperatura máxima: 29.0°C<br>
+                                        Temperatura mínima: 16.3°C<br>
+                                        <br>
+                                        Días >25°C:<br>
+                                        - Ciudad A: 2 días<br>
+                                        - Ciudad B: 0 días<br>
+                                        - Ciudad C: 4 días<br>
+                                        - Ciudad D: 0 días<br>
+                                        <br>
+                                        Desviación estándar:<br>
+                                        - Ciudad A: 2.8<br>
+                                        - Ciudad B: 2.0<br>
+                                        - Ciudad C: 1.8<br>
+                                        - Ciudad D: 1.9<br>
+                                        <br>
+                                        Mayor variación: Ciudad B (6.2°C)
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-python">
+                                            <i class="fas fa-file-download me-2"></i> Descargar solución
+                                        </button>
+                                        <button class="btn btn-module-nav ms-2">
+                                            <i class="fas fa-video me-2"></i> Ver explicación en video
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 p-4 text-center bg-light rounded">
+                                    <h4>¡Dominaste NumPy para cálculos eficientes!</h4>
+                                    <p>Ahora puedes realizar operaciones numéricas complejas de manera eficiente.</p>
+                                    <button class="btn btn-python btn-lg mt-2">
+                                        Continuar con el Módulo 5: Pandas para manejo de datos <i class="fas fa-arrow-right ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navegación entre módulos -->
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-module-nav">
+                    <a href="Modulo_3.html"> 
+                        <i class="fas fa-arrow-left me-2"></i> Módulo 3: Estructuras de control
+                    </a>
+                </button>
+                <button class="btn btn-module-nav">
+                    Módulo 5: Pandas <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para seleccionar opciones en el quiz
+        function selectOption(element) {
+            // Resetear todas las opciones en esta pregunta
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Marcar la opción seleccionada
+            element.classList.add('selected');
+        }
+        
+        // Actualizar barra de progreso al cambiar de sección
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const progressBar = document.querySelector('.progress-bar');
+                let progress = 20;
+                
+                if(this.id === 'v-pills-arrays-tab') progress = 35;
+                else if(this.id === 'v-pills-operations-tab') progress = 50;
+                else if(this.id === 'v-pills-indexing-tab') progress = 65;
+                else if(this.id === 'v-pills-examples-tab') progress = 80;
+                else if(this.id === 'v-pills-exercises-tab') progress = 90;
+                else if(this.id === 'v-pills-integration-tab') progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressBar.setAttribute('aria-valuenow', progress);
+                progressBar.innerHTML = progress + '%';
+            });
+        });
+        
+        // Animación para los ejercicios
+        document.querySelectorAll('.exercise').forEach(exercise => {
+            exercise.addEventListener('click', function(e) {
+                if(e.target.classList.contains('btn')) {
+                    const solution = this.querySelector('.code-block:last-child');
+                    if(solution) {
+                        solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
