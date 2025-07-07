@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" id="favicon">
+    <title>Módulo 6: Limpieza de Datos | Fundamentos de Programación para Análisis de Datos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/mod6.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="module-title">Módulo 6: Limpieza de Datos</h1>
+            <p class="module-subtitle">Aprende técnicas esenciales para preparar tus datos antes del análisis</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 75%">
+                    <span class="progress-text">75% Completado</span>
+                </div>
+            </div>
+            
+            <div class="module-info">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <span>Tiempo estimado: 6 horas</span>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-tasks"></i>
+                    <span>5 ejercicios prácticos + 1 integrador</span>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-award"></i>
+                    <span>Dificultad: Intermedia</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-container">
+            <div class="module-nav">
+                <div class="nav-item active">
+                    <i class="fas fa-broom"></i>
+                    <h3>Limpieza de Datos</h3>
+                    <p>Módulo actual</p>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Visualización</h3>
+                    <p>Módulo 7</p>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Proyecto Final</h3>
+                    <p>Módulo 8</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> Introducción a la Limpieza de Datos</h2>
+            <div class="section-content">
+                <p>La limpieza de datos es un paso <strong>fundamental</strong> en el proceso de análisis. Datos sucios o inconsistentes pueden llevar a conclusiones erróneas y decisiones equivocadas.</p>
+                
+                <div class="content-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Problemas Comunes</h3>
+                        <ul>
+                            <li>Valores faltantes (NaN)</li>
+                            <li>Datos duplicados</li>
+                            <li>Errores de formato</li>
+                            <li>Valores atípicos (outliers)</li>
+                            <li>Inconsistencias en categorías</li>
+                            <li>Errores tipográficos</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-check-circle"></i> Beneficios de la Limpieza</h3>
+                        <ul>
+                            <li>Mejora la calidad de los análisis</li>
+                            <li>Incrementa la precisión de los modelos</li>
+                            <li>Facilita la visualización de datos</li>
+                            <li>Ahorra tiempo en etapas posteriores</li>
+                            <li>Permite cumplir con estándares de calidad</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="visualization">
+                    <div class="chart-container">
+                        <h3 style="text-align: center; margin-bottom: 20px;">Tiempo en el Proceso de Análisis de Datos</h3>
+                        <div class="chart">
+                            <div class="bar" style="height: 70%;">
+                                <span>70%</span>
+                                <div class="bar-label">Limpieza</div>
+                            </div>
+                            <div class="bar" style="height: 15%;">
+                                <span>15%</span>
+                                <div class="bar-label">Análisis</div>
+                            </div>
+                            <div class="bar" style="height: 10%;">
+                                <span>10%</span>
+                                <div class="bar-label">Visualización</div>
+                            </div>
+                            <div class="bar" style="height: 5%;">
+                                <span>5%</span>
+                                <div class="bar-label">Modelado</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="tabs">
+                <div class="tab active" data-tab="missing">Valores Faltantes</div>
+                <div class="tab" data-tab="duplicates">Datos Duplicados</div>
+                <div class="tab" data-tab="outliers">Valores Atípicos</div>
+                <div class="tab" data-tab="formatting">Formato de Datos</div>
+            </div>
+
+            <div class="tab-content active" id="missing">
+                <h2 class="section-title"><i class="fas fa-question-circle"></i> Manejo de Valores Faltantes</h2>
+                <div class="section-content">
+                    <p>Los valores faltantes (representados como <code>NaN</code> en Pandas) son comunes en conjuntos de datos reales. Veamos cómo manejarlos:</p>
+                    
+                    <div class="dataset-preview">
+                        <div class="dataset-row dataset-header">
+                            <div>ID</div>
+                            <div>Nombre</div>
+                            <div>Edad</div>
+                            <div>Ingresos</div>
+                            <div>Ciudad</div>
+                        </div>
+                        <div class="dataset-row">
+                            <div>1</div>
+                            <div>Ana Torres</div>
+                            <div>28</div>
+                            <div>45000</div>
+                            <div>Madrid</div>
+                        </div>
+                        <div class="dataset-row">
+                            <div>2</div>
+                            <div>Carlos Ruiz</div>
+                            <div>NaN</div>
+                            <div>52000</div>
+                            <div>Barcelona</div>
+                        </div>
+                        <div class="dataset-row">
+                            <div>3</div>
+                            <div>María López</div>
+                            <div>34</div>
+                            <div>NaN</div>
+                            <div>Valencia</div>
+                        </div>
+                        <div class="dataset-row">
+                            <div>4</div>
+                            <div>NaN</div>
+                            <div>45</div>
+                            <div>61000</div>
+                            <div>Sevilla</div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <span class="code-comment"># Identificar valores faltantes</span><br>
+                        <span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd<br><br>
+                        
+                        <span class="code-comment"># Cargar datos</span><br>
+                        df = pd.read_csv(<span class="code-param">'datos_clientes.csv'</span>)<br><br>
+                        
+                        <span class="code-comment"># Verificar valores faltantes</span><br>
+                        print(df.isnull().sum())<br><br>
+                        
+                        <span class="code-comment"># Opción 1: Eliminar filas con valores faltantes</span><br>
+                        df_clean = df.dropna()<br><br>
+                        
+                        <span class="code-comment"># Opción 2: Rellenar con la media (para valores numéricos)</span><br>
+                        df[<span class="code-param">'Ingresos'</span>] = df[<span class="code-param">'Ingresos'</span>].fillna(df[<span class="code-param">'Ingresos'</span>].mean())<br><br>
+                        
+                        <span class="code-comment"># Opción 3: Rellenar con el valor más frecuente (para categóricos)</span><br>
+                        df[<span class="code-param">'Ciudad'</span>] = df[<span class="code-param">'Ciudad'</span>].fillna(df[<span class="code-param">'Ciudad'</span>].mode()[0])<br>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h4><i class="fas fa-pencil-alt"></i> Ejercicio Práctico</h4>
+                        <p>Dado un DataFrame con datos de productos que contiene valores faltantes en las columnas 'Precio' y 'Categoría':</p>
+                        <ol>
+                            <li>Identifica cuántos valores faltantes hay en cada columna</li>
+                            <li>Rellena los valores faltantes en 'Precio' con la mediana de precios</li>
+                            <li>Rellena los valores faltantes en 'Categoría' con 'Desconocido'</li>
+                            <li>Elimina las filas donde falte el valor en la columna 'Producto'</li>
+                        </ol>
+                        <button class="btn btn-secondary">Mostrar Solución</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz de Comprensión</h2>
+            
+            <div class="question">
+                <p>1. ¿Cuál es el método de Pandas para identificar valores faltantes en un DataFrame?</p>
+                <div class="options">
+                    <div class="option">A) findna()</div>
+                    <div class="option">B) detectna()</div>
+                    <div class="option selected">C) isnull()</div>
+                    <div class="option">D) missing()</div>
+                </div>
+                <div class="feedback correct">
+                    <i class="fas fa-check-circle"></i> ¡Correcto! <strong>isnull()</strong> es la función correcta para identificar valores faltantes en Pandas.
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>2. ¿Cuándo es apropiado eliminar filas con valores faltantes?</p>
+                <div class="options">
+                    <div class="option">A) Siempre que haya valores faltantes</div>
+                    <div class="option selected">B) Cuando el porcentaje de valores faltantes es pequeño</div>
+                    <div class="option">C) Cuando tenemos millones de filas</div>
+                    <div class="option">D) Nunca es apropiado</div>
+                </div>
+                <div class="feedback incorrect">
+                    <i class="fas fa-times-circle"></i> Incorrecto. La respuesta correcta es B. Solo debemos eliminar filas cuando el porcentaje de valores faltantes es pequeño para no afectar significativamente el conjunto de datos.
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>3. ¿Qué método usarías para rellenar valores faltantes en una columna categórica?</p>
+                <div class="options">
+                    <div class="option">A) Con la media</div>
+                    <div class="option">B) Con la mediana</div>
+                    <div class="option">C) Con ceros</div>
+                    <div class="option selected">D) Con la moda</div>
+                </div>
+            </div>
+            
+            <button class="btn">Verificar Respuestas</button>
+        </div>
+
+        <div class="integrative-exercise">
+            <span class="badge">Ejercicio Integrador</span>
+            <h3><i class="fas fa-star"></i> Limpieza de Datos de Ventas</h3>
+            <p>Tienes un dataset de ventas mensuales con los siguientes problemas:</p>
+            
+            <div class="content-grid">
+                <div class="card">
+                    <h3><i class="fas fa-bug"></i> Problemas Detectados</h3>
+                    <ul>
+                        <li>Valores faltantes en 'Cantidad' y 'Precio Unitario'</li>
+                        <li>Duplicados en transacciones con el mismo ID</li>
+                        <li>Errores de formato en 'Fecha' (diferentes formatos)</li>
+                        <li>Valores negativos en 'Cantidad'</li>
+                        <li>Productos con nombres inconsistentes ("Lapiz", "Lápiz", "lapiz")</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tasks"></i> Tareas Requeridas</h3>
+                    <ol>
+                        <li>Cargar el dataset 'ventas_mensuales.csv'</li>
+                        <li>Eliminar registros duplicados</li>
+                        <li>Estandarizar nombres de productos</li>
+                        <li>Corregir valores negativos en cantidad</li>
+                        <li>Rellenar valores faltantes apropiadamente</li>
+                        <li>Convertir la columna fecha a formato datetime</li>
+                        <li>Calcular el ingreso total (Cantidad * Precio Unitario)</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4><i class="fas fa-code"></i> Esqueleto de Solución</h4>
+                <div class="code-block">
+                    <span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd<br>
+                    <span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np<br><br>
+                    
+                    <span class="code-comment"># Paso 1: Cargar datos</span><br>
+                    df = pd.read_csv(<span class="code-param">'ventas_mensuales.csv'</span>)<br><br>
+                    
+                    <span class="code-comment"># Paso 2: Eliminar duplicados</span><br>
+                    df = df.<span class="code-function">drop_duplicates</span>(subset=<span class="code-param">'ID_Transaccion'</span>)<br><br>
+                    
+                    <span class="code-comment"># Paso 3: Estandarizar nombres de productos</span><br>
+                    df[<span class="code-param">'Producto'</span>] = df[<span class="code-param">'Producto'</span>].str.<span class="code-function">lower</span>()<br>
+                    df[<span class="code-param">'Producto'</span>] = df[<span class="code-param">'Producto'</span>].str.<span class="code-function">replace</span>(<span class="code-param">'á'</span>, <span class="code-param">'a'</span>)<br>
+                    <span class="code-comment"># ... completar con más transformaciones ...</span><br><br>
+                    
+                    <span class="code-comment"># Paso 4: Corregir cantidades negativas</span><br>
+                    df[<span class="code-param">'Cantidad'</span>] = df[<span class="code-param">'Cantidad'</span>].<span class="code-function">abs</span>()<br><br>
+                    
+                    <span class="code-comment"># Paso 5: Rellenar valores faltantes</span><br>
+                    <span class="code-comment"># ... completar ...</span><br><br>
+                    
+                    <span class="code-comment"># Paso 6: Convertir fecha</span><br>
+                    df[<span class="code-param">'Fecha'</span>] = pd.<span class="code-function">to_datetime</span>(df[<span class="code-param">'Fecha'</span>], errors=<span class="code-param">'coerce'</span>)<br><br>
+                    
+                    <span class="code-comment"># Paso 7: Calcular ingreso total</span><br>
+                    df[<span class="code-param">'Ingreso_Total'</span>] = df[<span class="code-param">'Cantidad'</span>] * df[<span class="code-param">'Precio_Unitario'</span>]<br>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn"><i class="fas fa-download"></i> Descargar Dataset</button>
+                <button class="btn btn-secondary"><i class="fas fa-rocket"></i> Enviar Solución</button>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-arrow-right"></i> Siguientes Pasos</h2>
+            <div class="section-content">
+                <div class="content-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-book"></i> Recursos Adicionales</h3>
+                        <ul>
+                            <li>Guía completa de limpieza con Pandas</li>
+                            <li>Casos de estudio: limpieza de datos reales</li>
+                            <li>Plantillas de flujos de limpieza</li>
+                            <li>Biblioteca de funciones útiles</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-chart-line"></i> Preparación para Módulo 7</h3>
+                        <p>En el próximo módulo aprenderás:</p>
+                        <ul>
+                            <li>Visualización de datos con Matplotlib</li>
+                            <li>Creación de gráficos informativos</li>
+                            <li>Personalización avanzada de visualizaciones</li>
+                            <li>Storytelling con datos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Fundamentos de Programación para Análisis de Datos con Python © 2023</p>
+            <p>Módulo 6: Limpieza de Datos | Progreso del curso: 75%</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Quiz selection functionality
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from sibling options
+                option.parentElement.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+            });
+        });
+        
+        // Show solution button
+        document.querySelectorAll('.btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const solution = this.previousElementSibling;
+                if (solution) {
+                    solution.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
