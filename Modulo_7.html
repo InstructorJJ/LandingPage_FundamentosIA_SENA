@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" id="favicon">
+    <title>Módulo 7: Visualización con Matplotlib | Fundamentos de Programación para Análisis de Datos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/mod7.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="module-title">Módulo 7: Visualización con Matplotlib</h1>
+            <p class="module-subtitle">Aprende a crear visualizaciones impactantes para comunicar insights de datos</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <span class="progress-text">87% Completado</span>
+                </div>
+            </div>
+            
+            <div class="module-info">
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <span>Tiempo estimado: 8 horas</span>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>6 tipos de gráficos + 1 proyecto</span>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-award"></i>
+                    <span>Dificultad: Intermedia</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-container">
+            <div class="module-nav">
+                <div class="nav-item">
+                    <a href="Modulo_6.html">
+                        <i class="fas fa-broom"></i>
+                        <h3>Limpieza de Datos</h3>
+                        <p>Módulo 6</p>
+                    </a>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Visualización</h3>
+                    <p>Módulo actual</p>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Proyecto Final</h3>
+                    <p>Módulo 8</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-eye"></i> Importancia de la Visualización de Datos</h2>
+            <div class="section-content">
+                <p>La visualización de datos transforma números complejos en imágenes comprensibles, permitiendo descubrir patrones, tendencias y relaciones que de otra forma serían difíciles de percibir.</p>
+                
+                <div class="content-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-lightbulb"></i> Beneficios Clave</h3>
+                        <ul>
+                            <li>Comunicar insights de forma efectiva</li>
+                            <li>Identificar patrones y tendencias</li>
+                            <li>Detectar valores atípicos y anomalías</li>
+                            <li>Apoyar la toma de decisiones basada en datos</li>
+                            <li>Narrar historias con datos</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-chart-line"></i> Matplotlib en el Ecosistema Python</h3>
+                        <ul>
+                            <li>Biblioteca fundacional para visualización</li>
+                            <li>Ampliamente utilizada en ciencia de datos</li>
+                            <li>Integración perfecta con Pandas y NumPy</li>
+                            <li>Altamente personalizable</li>
+                            <li>Base para otras bibliotecas (Seaborn, Plotly)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <i class="fas fa-lightbulb"></i> <strong>Tip profesional:</strong> Una buena visualización debe ser clara, precisa y eficiente en la comunicación de información. Menos es más cuando se trata de elementos decorativos.
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="tabs">
+                <div class="tab active" data-tab="basic">Gráficos Básicos</div>
+                <div class="tab" data-tab="custom">Personalización</div>
+                <div class="tab" data-tab="advanced">Gráficos Avanzados</div>
+                <div class="tab" data-tab="pandas">Pandas Integration</div>
+            </div>
+
+            <div class="tab-content active" id="basic">
+                <h2 class="section-title"><i class="fas fa-chart-simple"></i> Creación de Gráficos Básicos</h2>
+                <div class="section-content">
+                    <p>Matplotlib ofrece una variedad de gráficos para diferentes propósitos. Veamos los más comunes:</p>
+                    
+                    <div class="visual-example">
+                        <div class="example-card">
+                            <div class="example-header">Gráfico de Línea</div>
+                            <div class="example-content">
+                                <div class="chart-content">
+                                    <canvas id="lineChart" width="300" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-card">
+                            <div class="example-header">Gráfico de Barras</div>
+                            <div class="example-content">
+                                <div class="chart-content">
+                                    <canvas id="barChart" width="300" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="code-tabs">
+                        <div class="code-tab active" data-tab="line-code">Código Línea</div>
+                        <div class="code-tab" data-tab="bar-code">Código Barras</div>
+                        <div class="code-tab" data-tab="scatter-code">Código Dispersión</div>
+                    </div>
+                    
+                    <div class="code-block">
+                        <span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt<br>
+                        <span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np<br><br>
+                        
+                        <span class="code-comment"># Datos de ejemplo</span><br>
+                        x = np.linspace(0, 10, 100)<br>
+                        y = np.sin(x)<br><br>
+                        
+                        <span class="code-comment"># Crear figura y ejes</span><br>
+                        fig, ax = plt.subplots(figsize=(10, 6))<br><br>
+                        
+                        <span class="code-comment"># Gráfico de línea</span><br>
+                        ax.plot(x, y, label='Seno', color='blue', linewidth=2)<br><br>
+                        
+                        <span class="code-comment"># Personalización</span><br>
+                        ax.set_title(<span class="code-param">'Función Seno'</span>, fontsize=14)<br>
+                        ax.set_xlabel(<span class="code-param">'Eje X'</span>, fontsize=12)<br>
+                        ax.set_ylabel(<span class="code-param">'Eje Y'</span>, fontsize=12)<br>
+                        ax.grid(True, linestyle='--', alpha=0.7)<br>
+                        ax.legend()<br><br>
+                        
+                        <span class="code-comment"># Mostrar gráfico</span><br>
+                        plt.show()<br>
+                    </div>
+                    
+                    <div class="exercise">
+                        <h4><i class="fas fa-pencil-alt"></i> Ejercicio Práctico</h4>
+                        <p>Crea un gráfico de barras que muestre las ventas mensuales de una tienda:</p>
+                        <ul>
+                            <li>Meses: Enero a Diciembre</li>
+                            <li>Ventas: [15000, 18000, 22000, 21000, 24000, 30000, 35000, 32000, 28000, 25000, 23000, 40000]</li>
+                            <li>Personaliza con colores, título y etiquetas de ejes</li>
+                            <li>Añade una línea horizontal en la media de ventas</li>
+                        </ul>
+                        <button class="btn btn-secondary">Mostrar Solución</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-swatchbook"></i> Personalización de Gráficos</h2>
+            <div class="section-content">
+                <p>La verdadera potencia de Matplotlib está en su capacidad de personalización:</p>
+                
+                <div class="chart-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">Personalización Completa</div>
+                        <div class="chart-content">
+                            <canvas id="customChart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">Subgráficos</div>
+                        <div class="chart-content">
+                            <canvas id="subplotsChart" width="300" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-block">
+                    <span class="code-comment"># Personalización avanzada</span><br>
+                    fig, ax = plt.subplots(figsize=(12, 7))<br><br>
+                    
+                    <span class="code-comment"># Crear gráfico</span><br>
+                    ax.plot(x, y, color='#2e4374', linewidth=3, linestyle='-', marker='o', markersize=8)<br><br>
+                    
+                    <span class="code-comment"># Personalizar ejes</span><br>
+                    ax.set_title(<span class="code-param">'Análisis de Ventas Trimestrales'</span>, fontsize=16, fontweight='bold')<br>
+                    ax.set_xlabel(<span class="code-param">'Trimestres'</span>, fontsize=12)<br>
+                    ax.set_ylabel(<span class="code-param">'Ventas (en miles)'</span>, fontsize=12)<br>
+                    ax.tick_params(axis='both', which='major', labelsize=10)<br><br>
+                    
+                    <span class="code-comment"># Añadir grid y fondo</span><br>
+                    ax.grid(True, color='gray', linestyle='--', linewidth=0.5, alpha=0.7)<br>
+                    ax.set_facecolor('#f8f9fc')<br><br>
+                    
+                    <span class="code-comment"># Añadir anotaciones</span><br>
+                    ax.annotate(<span class="code-param">'Máximo histórico'</span>, xy=(3, 35000), xytext=(3.5, 37000),<br>
+                    arrowprops=dict(facecolor='black', shrink=0.05), fontsize=10)<br><br>
+                    
+                    <span class="code-comment"># Añadir leyenda</span><br>
+                    ax.legend([<span class="code-param">'Ventas 2023'</span>], loc='upper left')<br>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz de Comprensión</h2>
+            
+            <div class="question">
+                <p>1. ¿Qué función de Matplotlib se utiliza para crear una figura y ejes?</p>
+                <div class="options">
+                    <div class="option">A) plt.figure()</div>
+                    <div class="option">B) plt.subplots()</div>
+                    <div class="option">C) plt.axes()</div>
+                    <div class="option">D) plt.create()</div>
+                </div>
+                <div class="feedback correct">
+                    <i class="fas fa-check-circle"></i> ¡Correcto! <strong>plt.subplots()</strong> es la forma recomendada de crear figuras y ejes.
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>2. ¿Cuál es el método para añadir etiquetas al eje X en un gráfico?</p>
+                <div class="options">
+                    <div class="option">A) ax.label_x()</div>
+                    <div class="option">B) ax.x_label()</div>
+                    <div class="option">C) ax.set_xlabel()</div>
+                    <div class="option">D) ax.xlabel()</div>
+                </div>
+            </div>
+            
+            <div class="question">
+                <p>3. ¿Qué tipo de gráfico es más apropiado para mostrar la distribución de datos?</p>
+                <div class="options">
+                    <div class="option">A) Gráfico de línea</div>
+                    <div class="option">B) Histograma</div>
+                    <div class="option">C) Gráfico de dispersión</div>
+                    <div class="option">D) Gráfico de pastel</div>
+                </div>
+            </div>
+            
+            <button class="btn">Responder QUIZ</button>
+        </div>
+
+        <div class="integrative-exercise">
+            <span class="badge">Proyecto de Visualización</span>
+            <h3><i class="fas fa-star"></i> Dashboard de Ventas</h3>
+            <p>Crea un dashboard con múltiples visualizaciones para un conjunto de datos de ventas:</p>
+            
+            <div class="content-grid">
+                <div class="card">
+                    <h3><i class="fas fa-database"></i> Dataset: Ventas Globales</h3>
+                    <ul>
+                        <li>Registros: 10,000 transacciones</li>
+                        <li>Período: Enero 2022 - Diciembre 2023</li>
+                        <li>Columnas: Fecha, Producto, Categoría, Región, Ventas, Beneficios</li>
+                        <li>Archivo: <code>ventas_globales.csv</code></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-tasks"></i> Visualizaciones Requeridas</h3>
+                    <ol>
+                        <li>Evolución mensual de ventas (gráfico de línea)</li>
+                        <li>Ventas por categoría de producto (gráfico de barras)</li>
+                        <li>Distribución de beneficios (histograma)</li>
+                        <li>Relación entre ventas y beneficios (gráfico de dispersión)</li>
+                        <li>Porcentaje de ventas por región (gráfico de pastel)</li>
+                        <li>Dashboard integrado (subgráficos)</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="exercise">
+                <h4><i class="fas fa-code"></i> Esqueleto de Solución</h4>
+                <div class="code-block">
+                    <span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd<br>
+                    <span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt<br><br>
+                    
+                    <span class="code-comment"># Paso 1: Cargar datos</span><br>
+                    df = pd.read_csv(<span class="code-param">'ventas_globales.csv'</span>)<br>
+                    df[<span class="code-param">'Fecha'</span>] = pd.to_datetime(df[<span class="code-param">'Fecha'</span>])<br><br>
+                    
+                    <span class="code-comment"># Paso 2: Preparar datos</span><br>
+                    df_mensual = df.groupby(pd.Grouper(key=<span class="code-param">'Fecha'</span>, freq=<span class="code-param">'M'</span>)).sum()<br>
+                    ventas_por_categoria = df.groupby(<span class="code-param">'Categoría'</span>)[<span class="code-param">'Ventas'</span>].sum()<br><br>
+                    
+                    <span class="code-comment"># Paso 3: Crear dashboard</span><br>
+                    fig, axs = plt.subplots(2, 3, figsize=(18, 12))<br><br>
+                    
+                    <span class="code-comment"># Gráfico 1: Evolución mensual</span><br>
+                    axs[0, 0].plot(df_mensual.index, df_mensual[<span class="code-param">'Ventas'</span>], color='blue')<br>
+                    axs[0, 0].set_title(<span class="code-param">'Ventas Mensuales'</span>)<br><br>
+                    
+                    <span class="code-comment"># Gráfico 2: Ventas por categoría</span><br>
+                    ventas_por_categoria.plot(kind=<span class="code-param">'bar'</span>, ax=axs[0, 1], color='green')<br>
+                    axs[0, 1].set_title(<span class="code-param">'Ventas por Categoría'</span>)<br><br>
+                    
+                    <span class="code-comment"># ... completar con otros gráficos ...</span><br><br>
+                    
+                    <span class="code-comment"># Personalizar dashboard</span><br>
+                    plt.suptitle(<span class="code-param">'Dashboard de Ventas Globales 2022-2023'</span>, fontsize=20)<br>
+                    plt.tight_layout()<br>
+                    plt.savefig(<span class="code-param">'dashboard_ventas.png'</span>, dpi=300)<br>
+                    plt.show()<br>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn"><i class="fas fa-download"></i> Descargar Dataset</button>
+                <button class="btn btn-secondary"><i class="fas fa-rocket"></i> Enviar Proyecto</button>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-arrow-right"></i> Siguientes Pasos</h2>
+            <div class="section-content">
+                <div class="content-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-book"></i> Recursos Adicionales</h3>
+                        <ul>
+                            <li>Galeria de gráficos Matplotlib</li>
+                            <li>Cheat sheet de personalización</li>
+                            <li>Introducción a Seaborn</li>
+                            <li>Visualizaciones interactivas con Plotly</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-project-diagram"></i> Preparación para Módulo 8</h3>
+                        <p>En el proyecto final integrarás todos los conocimientos:</p>
+                        <ul>
+                            <li>Análisis exploratorio de datos completo</li>
+                            <li>Limpieza y transformación de datos</li>
+                            <li>Visualizaciones avanzadas</li>
+                            <li>Presentación de resultados</li>
+                            <li>Dashboard interactivo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Fundamentos de Programación para Análisis de Datos con Python © 2025</p>
+            <p>Módulo 7: Visualización con Matplotlib | Progreso del curso: 87%</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Code tab switching
+        document.querySelectorAll('.code-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+        
+        // Quiz selection functionality
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from sibling options
+                option.parentElement.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+            });
+        });
+        
+        // Show solution button
+        document.querySelectorAll('.btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const solution = this.previousElementSibling;
+                if (solution) {
+                    solution.style.display = 'block';
+                }
+            });
+        });
+        
+        // Create chart visualizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Line chart
+            const lineCtx = document.getElementById('lineChart').getContext('2d');
+            drawLineChart(lineCtx);
+            
+            // Bar chart
+            const barCtx = document.getElementById('barChart').getContext('2d');
+            drawBarChart(barCtx);
+            
+            // Custom chart
+            const customCtx = document.getElementById('customChart').getContext('2d');
+            drawCustomChart(customCtx);
+            
+            // Subplots chart
+            const subplotsCtx = document.getElementById('subplotsChart').getContext('2d');
+            drawSubplotsChart(subplotsCtx);
+        });
+        
+        function drawLineChart(ctx) {
+            ctx.beginPath();
+            ctx.moveTo(30, 150);
+            
+            // Draw sine wave
+            for(let x = 30; x <= 270; x += 10) {
+                const y = 150 - Math.sin((x-30)/40) * 60;
+                ctx.lineTo(x, y);
+            }
+            
+            ctx.strokeStyle = '#4e73df';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // Draw axes
+            ctx.beginPath();
+            ctx.moveTo(20, 30);
+            ctx.lineTo(20, 170);
+            ctx.lineTo(280, 170);
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // Add labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText('Eje X', 140, 190);
+            ctx.save();
+            ctx.translate(10, 100);
+            ctx.rotate(-Math.PI/2);
+            ctx.fillText('Eje Y', 0, 0);
+            ctx.restore();
+        }
+        
+        function drawBarChart(ctx) {
+            const data = [45, 75, 50, 65, 85];
+            const labels = ['A', 'B', 'C', 'D', 'E'];
+            const colors = ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b'];
+            const barWidth = 30;
+            const spacing = 20;
+            const startX = 50;
+            
+            // Draw bars
+            for(let i = 0; i < data.length; i++) {
+                const barHeight = data[i];
+                const x = startX + i * (barWidth + spacing);
+                const y = 170 - barHeight;
+                
+                ctx.fillStyle = colors[i];
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // Add label
+                ctx.fillStyle = '#333';
+                ctx.font = '12px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(labels[i], x + barWidth/2, 185);
+            }
+            
+            // Draw axes
+            ctx.beginPath();
+            ctx.moveTo(30, 30);
+            ctx.lineTo(30, 170);
+            ctx.lineTo(280, 170);
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+        
+        function drawCustomChart(ctx) {
+            // Draw multiple data series
+            ctx.beginPath();
+            ctx.moveTo(40, 100);
+            ctx.bezierCurveTo(100, 30, 150, 160, 200, 100);
+            ctx.strokeStyle = '#2e4374';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(40, 120);
+            ctx.bezierCurveTo(100, 180, 150, 40, 200, 120);
+            ctx.strokeStyle = '#1cc88a';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // Add title
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Ventas vs. Beneficios', 150, 30);
+            
+            // Add legend
+            ctx.fillStyle = '#2e4374';
+            ctx.fillRect(40, 190, 15, 15);
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.fillText('Ventas', 65, 202);
+            
+            ctx.fillStyle = '#1cc88a';
+            ctx.fillRect(120, 190, 15, 15);
+            ctx.fillStyle = '#333';
+            ctx.fillText('Beneficios', 145, 202);
+            
+            // Add grid
+            ctx.strokeStyle = '#eee';
+            ctx.lineWidth = 1;
+            for(let y = 170; y >= 30; y -= 20) {
+                ctx.beginPath();
+                ctx.moveTo(30, y);
+                ctx.lineTo(270, y);
+                ctx.stroke();
+            }
+        }
+        
+        function drawSubplotsChart(ctx) {
+            // Draw mini charts
+            // Line chart
+            ctx.beginPath();
+            ctx.moveTo(40, 50);
+            for(let x = 40; x <= 120; x += 10) {
+                const y = 50 - Math.sin((x-40)/15) * 20;
+                ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = '#4e73df';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Bar chart
+            ctx.fillStyle = '#1cc88a';
+            ctx.fillRect(150, 30, 20, 70);
+            ctx.fillRect(180, 50, 20, 50);
+            ctx.fillRect(210, 70, 20, 30);
+            
+            // Pie chart
+            ctx.beginPath();
+            ctx.moveTo(80, 150);
+            ctx.arc(80, 150, 30, 0, Math.PI * 1.5);
+            ctx.lineTo(80, 150);
+            ctx.fillStyle = '#f6c23e';
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.moveTo(80, 150);
+            ctx.arc(80, 150, 30, Math.PI * 1.5, Math.PI * 2);
+            ctx.lineTo(80, 150);
+            ctx.fillStyle = '#e74a3b';
+            ctx.fill();
+            
+            // Scatter plot
+            const points = [
+                {x: 180, y: 130}, {x: 190, y: 140}, {x: 200, y: 150},
+                {x: 210, y: 140}, {x: 220, y: 130}, {x: 190, y: 160},
+                {x: 200, y: 170}, {x: 210, y: 160}, {x: 180, y: 170}
+            ];
+            
+            ctx.fillStyle = '#36b9cc';
+            points.forEach(point => {
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            // Add borders
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(20, 20, 110, 80);  // Top-left
+            ctx.strokeRect(140, 20, 110, 80); // Top-right
+            ctx.strokeRect(20, 120, 110, 80); // Bottom-left
+            ctx.strokeRect(140, 120, 110, 80);// Bottom-right
+        }
+    </script>
+</body>
+</html>
