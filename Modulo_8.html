@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/vnd.microsoft.icon" id="favicon">
+    <title>Módulo 8: Proyecto Final Integrador</title>
+    <link rel="stylesheet" href="css/mod8.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="module-title">Módulo 8: Proyecto Final Integrador</h1>
+            <p class="module-subtitle">Integrando todos los conocimientos para un análisis de datos completo</p>
+            
+            <div class="module-progress">
+                <div class="progress-step completed">1</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step completed">2</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step completed">3</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step completed">4</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step completed">5</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step completed">6</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step completed">7</div>
+                <div class="progress-connector"></div>
+                <div class="progress-step active">8</div>
+            </div>
+        </header>
+        
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <h2 class="card-title">Objetivos del Módulo</h2>
+                </div>
+                <div class="card-content">
+                    <p>En este módulo final, integrarás todos los conocimientos adquiridos para realizar un proyecto completo de análisis de datos.</p>
+                    <ul>
+                        <li>Aplicar conceptos de programación en un proyecto real</li>
+                        <li>Integrar las bibliotecas principales de Python para análisis de datos</li>
+                        <li>Desarrollar un flujo completo de análisis: desde la carga de datos hasta la visualización</li>
+                        <li>Presentar hallazgos de manera efectiva</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <h2 class="card-title">Habilidades a Desarrollar</h2>
+                </div>
+                <div class="card-content">
+                    <p>Al completar este módulo, serás capaz de:</p>
+                    <ul>
+                        <li>Diseñar un flujo completo de análisis de datos</li>
+                        <li>Integrar NumPy, Pandas y Matplotlib en un proyecto</li>
+                        <li>Resolver problemas reales de análisis de datos</li>
+                        <li>Comunicar resultados técnicos de manera efectiva</li>
+                        <li>Desarrollar pensamiento crítico para el análisis de datos</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">⏱️</div>
+                    <h2 class="card-title">Duración y Esfuerzo</h2>
+                </div>
+                <div class="card-content">
+                    <p>Este módulo está diseñado para completarse en 1 semana con el siguiente esfuerzo estimado:</p>
+                    <ul>
+                        <li>8-10 horas de contenido teórico-práctico</li>
+                        <li>5-7 horas para el proyecto integrador</li>
+                        <li>2 horas para ejercicios de refuerzo</li>
+                        <li>1 hora para el quiz final</li>
+                    </ul>
+                    <p>El proyecto final será tu evidencia principal de aprendizaje.</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <h2 class="section-title">Ejemplo Práctico: Análisis de Ventas</h2>
+        
+        <div class="visualization">
+            <h3>Flujo Completo de Análisis de Datos</h3>
+            <p>Vamos a realizar un análisis de un conjunto de datos de ventas de supermercado, integrando todos los módulos anteriores.</p>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span>proyecto_ventas.py</span>
+                    <span>Python</span>
+                </div>
+                <div class="code-content">
+                    <pre><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+<span class="code-keyword">import</span> seaborn <span class="code-keyword">as</span> sns
+
+<span class="code-comment"># Módulo 5: Carga de datos con Pandas</span>
+datos = pd.read_csv(<span class="code-string">'ventas_supermercado.csv'</span>)
+
+<span class="code-comment"># Módulo 6: Limpieza de datos</span>
+<span class="code-comment"># Eliminar duplicados</span>
+datos = datos.drop_duplicates()
+
+<span class="code-comment"># Manejar valores faltantes</span>
+datos[<span class="code-string">'Ingresos'</span>] = datos[<span class="code-string">'Ingresos'</span>].fillna(datos[<span class="code-string">'Ingresos'</span>].mean())
+
+<span class="code-comment"># Módulo 3: Filtrado con estructuras de control</span>
+ventas_altas = datos[datos[<span class="code-string">'Ingresos'</span>] > 1000]
+
+<span class="code-comment"># Módulo 4: Cálculos con NumPy</span>
+promedio_ventas = np.mean(datos[<span class="code-string">'Ingresos'</span>])
+max_ventas = np.max(datos[<span class="code-string">'Ingresos'</span>])
+
+<span class="code-comment"># Módulo 5: Agrupación y agregación</span>
+ventas_por_ciudad = datos.groupby(<span class="code-string">'Ciudad'</span>)[<span class="code-string">'Ingresos'</span>].sum()
+ventas_por_producto = datos.groupby(<span class="code-string">'Producto'</span>)[<span class="code-string">'Ingresos'</span>].mean()
+
+<span class="code-comment"># Módulo 7: Visualización</span>
+plt.figure(figsize=(12, 6))
+sns.barplot(x=ventas_por_ciudad.index, y=ventas_por_ciudad.values)
+plt.title(<span class="code-string">'Ventas Totales por Ciudad'</span>)
+plt.xticks(rotation=45)
+plt.show()</pre>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart">
+                    <div class="chart-title">Ventas Totales por Ciudad</div>
+                    <div class="chart-placeholder">Visualización generada con Matplotlib y Seaborn</div>
+                </div>
+                
+                <div class="chart">
+                    <div class="chart-title">Distribución de Ingresos</div>
+                    <div class="chart-placeholder">Histograma mostrando la distribución de ventas</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise">
+            <h3 class="exercise-title">💪 Ejercicio: Refuerzo de Aprendizaje</h3>
+            <p>Completa las siguientes tareas utilizando el dataset de ventas:</p>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span>ejercicio_proyecto.py</span>
+                    <span>Python</span>
+                </div>
+                <div class="code-content">
+                    <pre><span class="code-comment"># 1. Calcular el ingreso promedio por tipo de cliente</span>
+ingreso_promedio = datos.groupby(<span class="code-string">'Tipo_Cliente'</span>)[<span class="code-string">'Ingresos'</span>].____()
+
+<span class="code-comment"># 2. Filtrar las ventas del último trimestre de 2023</span>
+ventas_trimestre = datos[(datos[<span class="code-string">'Fecha'</span>] >= <span class="code-string">'2023-10-01'</span>) ____ (datos[<span class="code-string">'Fecha'</span>] <= <span class="code-string">'2023-12-31'</span>)]
+
+<span class="code-comment"># 3. Calcular el porcentaje de ventas por categoría de producto</span>
+porcentaje_categorias = datos[<span class="code-string">'Categoria'</span>].____(normalize=True) * 100
+
+<span class="code-comment"># 4. Crear una visualización de ventas mensuales</span>
+plt.figure(figsize=(10, 5))
+datos.groupby(<span class="code-string">'Mes'</span>)[<span class="code-string">'Ingresos'</span>].____().plot(kind='____')
+plt.title(<span class="code-string">'Ventas Mensuales'</span>)
+plt.ylabel(<span class="code-string">'Ingresos'</span>)
+plt.show()</pre>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn">Ver Solución en Colab</button>
+            </div>
+        </div>
+        
+        <div class="quiz">
+            <h3 class="quiz-title">❓ Quiz de Comprensión</h3>
+            
+            <div class="quiz-question">
+                <h3>1. ¿Cuál es el primer paso en cualquier proyecto de análisis de datos?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option">A) Visualización de datos</div>
+                    <div class="quiz-option">B) Carga y exploración inicial</div>
+                    <div class="quiz-option">C) Análisis estadístico avanzado</div>
+                    <div class="quiz-option">D) Entrenamiento de modelos de ML</div>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <h3>2. Al encontrar valores faltantes en un dataset, ¿cuál NO es una estrategia válida?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option">A) Eliminar las filas con valores faltantes</div>
+                    <div class="quiz-option">B) Imputar con la media o mediana</div>
+                    <div class="quiz-option">C) Ignorarlos y continuar con el análisis</div>
+                    <div class="quiz-option">D) Usar métodos de interpolación</div>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <h3>3. ¿Qué biblioteca de Python se utiliza principalmente para manipulación de datos?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option">A) NumPy</div>
+                    <div class="quiz-option">B) Matplotlib</div>
+                    <div class="quiz-option">C) Pandas</div>
+                    <div class="quiz-option">D) Seaborn</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn">Entregar Respuestas</button>
+            </div>
+        </div>
+        
+        <div class="project-section">
+            <h2 class="project-title">Proyecto Final Integrador</h2>
+            <p>Para culminar el curso, realizarás un proyecto completo de análisis de datos donde aplicarás todos los conocimientos adquiridos en los 8 módulos.</p>
+            <p>El proyecto consistirá en analizar un dataset de tu elección (o uno proporcionado) y presentar un informe completo con:</p>
+            
+            <div class="project-steps">
+                <div class="project-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Carga y Exploración</h3>
+                    <p>Carga de datos y exploración inicial con Pandas</p>
+                </div>
+                
+                <div class="project-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Limpieza de Datos</h3>
+                    <p>Manejo de valores faltantes y datos inconsistentes</p>
+                </div>
+                
+                <div class="project-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Transformación</h3>
+                    <p>Creación de nuevas variables y transformaciones</p>
+                </div>
+                
+                <div class="project-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Análisis</h3>
+                    <p>Análisis exploratorio y respuesta a preguntas de negocio</p>
+                </div>
+                
+                <div class="project-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Visualización</h3>
+                    <p>Creación de visualizaciones efectivas con Matplotlib/Seaborn</p>
+                </div>
+                
+                <div class="project-step">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Presentación</h3>
+                    <p>Informe final con conclusiones y recomendaciones</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn">Instrucciones Por parte del Instructor</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Fundamentos de Programación para Análisis de Datos con Python</p>
+            <p>Módulo 8: Proyecto Final Integrador - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simulación de selección de opciones en el quiz
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remover selección previa en la misma pregunta
+                this.parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Seleccionar la opción actual
+                this.classList.add('selected');
+            });
+        });
+        
+        // Simulación de progreso
+        const connectors = document.querySelectorAll('.progress-connector');
+        let delay = 500;
+        
+        connectors.forEach(connector => {
+            setTimeout(() => {
+                connector.style.width = '80px';
+                connector.querySelector('::after').style.width = '100%';
+            }, delay);
+            delay += 500;
+        });
+    </script>
+</body>
+</html>
